@@ -93,6 +93,7 @@ os.system("xdg-open https://chat.whatsapp.com/FHvSjN4TFVo3jFShtWegVH?mode=ems_co
 import os
 import sys
 import time
+import threading
 
 # لوګو
 logo = """\
@@ -116,26 +117,24 @@ logo = """\
 \033[1;39m     ┗━━━━━━━━━━━━━━━━━━━\033[1;31mTEAM\033[1;39m━━━━━━━━━━━━━━━━━━━━┛
 """
 
-# ټایپ‌سټایل انیمېشن
-def typewriter_logo(logo, speed=0.002):
-    os.system('clear')
+# د ټایپ انیمېشن فنکشن
+def animated_logo(logo, speed=0.002):
+    os.system("clear")
     for char in logo:
         sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(speed)
-    print("\033[0m")  # رنګونه بېرته عادي ته
+    print("\033[0m")
 
 # د لوگو اجرا
-typewriter_logo(logo) 
-
 def start_logo_thread():
     t = threading.Thread(target=animated_logo, args=(logo,))
     t.daemon = True
     t.start()
+    t.join()  # انتظار تر څو بشپړ شي
 
-# د Jaber() نه مخکې دا وکاروئ:
+# اجرا کول
 start_logo_thread() 
-def Jaber():
     os.system('clear')
     os.system('xdg-open https://facebook.com/groups/544684501030088/')
     print(logo)
