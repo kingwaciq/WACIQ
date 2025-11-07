@@ -89,7 +89,7 @@ for ua in range(10000):
 	h='Mobile Safari/537.36'
 	alhhaj=(f"{a} {b}; {c}{d}.{e}.{f}.{g} {h}")
 	ugen.append(alhhaj)
-os.system("xdg-open https://chat.whatsapp.com/FHvSjN4TFVo3jFShtWegVH?mode=ems_copy_c")
+os.system("xdg-open https://t.me/JAVA_SCIPT_KING")
 import os
 import sys
 import time
@@ -134,7 +134,9 @@ def start_logo_thread():
     t.join()  # انتظار تر څو بشپړ شي
 
 # اجرا کول
-start_logo_thread() 
+if __name__ == "__main__":
+    start_logo_thread() 
+def Jaber():
     os.system('clear')
     os.system('xdg-open https://facebook.com/groups/544684501030088/')
     print(logo)
