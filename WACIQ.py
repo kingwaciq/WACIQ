@@ -89,29 +89,6 @@ for ua in range(10000):
 	h='Mobile Safari/537.36'
 	alhhaj=(f"{a} {b}; {c}{d}.{e}.{f}.{g} {h}")
 	ugen.append(alhhaj)
-
-def Jaber():
-    os.system('clear')
-    os.system('xdg-open https://facebook.com/groups/544684501030088/')
-    print(logo)
-    print("")
-    print("\033[1;96m ╔═════════════════════════════════╗")
-    print("\033[1;36m ║  \033[1;35m[\033[1;32m1\033[1;35m][\033[1;32mA\033[1;35m] \033[1;32m ᎡᎪΝᎠϴᎷ ᏟᏞϴΝᎬ ᏴᎠ        \033[1;36m║")
-    print("\033[1;96m ╠═════════════════════════════════╣")
-    print(" \033[1;36m║  \033[1;35m[\033[1;32m2\033[1;35m][\033[1;32mB\033[1;35m] \033[1;32m ᎫϴᏆΝ ᎷƳ ҒᏴ ᏀᎡϴႮᏢ       \033[1;36m║")
-    print(" \033[1;36m║  \033[1;35m[\033[1;32m3\033[1;35m][\033[1;32mC\033[1;35m] \033[1;32m ᎫϴᏆΝ ᎷƳ MS ᏀᎡϴႮᏢ       \033[1;36m║")
-    print("\033[1;36m ║  \033[1;35m[\033[1;32m0\033[1;35m][\033[1;32mX\033[1;35m] \033[1;32m ᎬХᏆͲ                   \033[1;36m║")
-    print("\033[1;96m ╚═════════════════════════════════╝")
-    print("")
-    Jaber = input(f'\033[1;32m ՏᎬᏞᎬᏟͲᎬᎠ ƳϴႮᎡ ϴᏢͲᏆϴΝ :\033[1;36m ')
-    if Jaber in ["1","A"]:
-        Jabers()
-    if Jaber in ["2","B"]:
-        os.system('xdg-open https://facebook.com/groups/544684501030088/')
-    if Jaber in ["3","C"]:
-        os.system('xdg-open https://www.facebook.com/BCS.Bangladesh.Cyber.Export.Official')
-    if Jaber in ["0","X"]:
-        os.system('exit')
 import os
 import sys
 import time
@@ -175,6 +152,29 @@ if __name__ == "__main__":
     lightning_effect(duration=3, width=60)
     show_waciq()
     print(logo) 
+def Jaber():
+    os.system('clear')
+    os.system('xdg-open https://facebook.com/groups/544684501030088/')
+    print(logo)
+    print("")
+    print("\033[1;96m ╔═════════════════════════════════╗")
+    print("\033[1;36m ║  \033[1;35m[\033[1;32m1\033[1;35m][\033[1;32mA\033[1;35m] \033[1;32m ᎡᎪΝᎠϴᎷ ᏟᏞϴΝᎬ ᏴᎠ        \033[1;36m║")
+    print("\033[1;96m ╠═════════════════════════════════╣")
+    print(" \033[1;36m║  \033[1;35m[\033[1;32m2\033[1;35m][\033[1;32mB\033[1;35m] \033[1;32m ᎫϴᏆΝ ᎷƳ ҒᏴ ᏀᎡϴႮᏢ       \033[1;36m║")
+    print(" \033[1;36m║  \033[1;35m[\033[1;32m3\033[1;35m][\033[1;32mC\033[1;35m] \033[1;32m ᎫϴᏆΝ ᎷƳ MS ᏀᎡϴႮᏢ       \033[1;36m║")
+    print("\033[1;36m ║  \033[1;35m[\033[1;32m0\033[1;35m][\033[1;32mX\033[1;35m] \033[1;32m ᎬХᏆͲ                   \033[1;36m║")
+    print("\033[1;96m ╚═════════════════════════════════╝")
+    print("")
+    Jaber = input(f'\033[1;32m ՏᎬᏞᎬᏟͲᎬᎠ ƳϴႮᎡ ϴᏢͲᏆϴΝ :\033[1;36m ')
+    if Jaber in ["1","A"]:
+        Jabers()
+    if Jaber in ["2","B"]:
+        os.system('xdg-open https://facebook.com/groups/544684501030088/')
+    if Jaber in ["3","C"]:
+        os.system('xdg-open https://www.facebook.com/BCS.Bangladesh.Cyber.Export.Official')
+    if Jaber in ["0","X"]:
+        os.system('exit')
+
 def Jabers():
     user=[]
     os.getuid
