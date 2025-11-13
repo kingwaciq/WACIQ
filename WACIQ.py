@@ -87,139 +87,105 @@ for ua in range(10000):
 	f=random.randrange(3000,6000)
 	g=random.randrange(20,100)
 	h='Mobile Safari/537.36'
-	alhhaj=(f"{a} {b}; {c}{d}.{e}.{f}.{g} {h}")
-	ugen.append(alhhaj)
+	alhhaj=(f"{a} {b}; {c}{d}.{e}.{f
 os.system("xdg-open https://t.me/JAVA_SCIPT_KING")
-# ---------- UI: WACIQ ASCII لوگو + رنګین انیمیشن ----------
-import sys
-import time
-import threading
-import shutil
-import random
+logo_lines = [
+    "██╗    ██╗ █████╗  ██████╗██╗ ██████╗",
+    "██║    ██║██╔══██╗██╔════╝██║██╔═══██╗",
+    "██║ █╗ ██║███████║██║     ██║██║   ██║",
+    "██║███╗██║██╔══██║██║     ██║██║   ██║",
+    "╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝",
+    " ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝╚═════╝"
+]
 
-# ستا ورکړل شوی ASCII لوگو (دقیقاً همداسې)
-LOGO = r"""
-██╗    ██╗ █████╗  ██████╗██╗ ██████╗ 
-██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
-██║ █╗ ██║███████║██║     ██║██║   ██║
-██║███╗██║██╔══██║██║     ██║██║   ██║
-╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝
+colors = ['\033[91m', '\033[92m', '\033[93m', '\033[94m', '\033[95m', '\033[96m']
+
+def animated_logo(width=10, speed=0.05):
+    shift = width
+    direction = -1
+    while shift >= 0:
+        os.system('clear')
+        color = colors[shift % len(colors)]
+        for line in logo_lines:
+            display_line = ' ' * shift
+            for char in line:
+                display_line += char
+                sys.stdout.write(f"{color}{display_line}\033[0m\r")
+                sys.stdout.flush()
+                time.sleep(speed/5)
+            print()
+        shift += direction
+        if shift < 0:
+            break
+
+def start_logo_thread():
+    t = threading.Thread(target=animated_logo)
+    t.daemon = True
+    t.start()
+    t.join()
+
+start_logo_thread()
+
+logo = """
+\033[1;39m     ┏━━━━━━━━━━━━━━━━━━━\033[38;5;46mBCS\033[1;39m━━━━━━━━━━━━━━━━━━━━━┓
+\033[1;39m     ┃ \x1b[1;95m❣︎[𖣘]☔︎\x1b[1;96mNAME\033[1;34m        : [★] WACIQ\033[1;39m            ┃
+\033[1;39m     ┃ \x1b[1;95m❣︎[𖣘]☔︎\x1b[1;96mFACEBOOK\033[1;34m    : [★] WACIQ x TEAM\033[1;39m   ┃
+\033[1;39m     ┃ \x1b[1;95m❣︎[𖣘]☔︎\x1b[1;96mGITHUB\033[1;34m      : [★] WACIQ REPO\033[1;39m          ┃
+\033[1;39m     ┃ \x1b[1;95m❣︎[𖣘]☔︎\x1b[1;96mWHATSAPP\033[1;34m    : [★]+8801852192547\033[1;39m     ┃
+\033[1;39m     ┗━━━━━━━━━━━━━━━━━━━\033[1;31mTEAM\033[1;39m━━━━━━━━━━━━━━━━━━━━┛
 """
 
-# رنګونه (ANSI)
-COLOR_CYCLE = ['\033[95m', '\033[96m', '\033[94m', '\033[93m', '\033[92m']
-BOLD = '\033[1m'
-RESET = '\033[0m'
+def WACIQ():
+    os.system('clear')
+    os.system('xdg-open https://facebook.com/groups/544684501030088/')
+    print(logo)
+    print("")
+    print("\033[1;96m ╔═════════════════════════════════╗")
+    print("\033[1;36m ║  \033[1;35m[1][A] RANDOM CLONE BD        \033[1;36m║")
+    print("\033[1;36m ║  [2][B] OPEN FACEBOOK GROUP    \033[1;36m║")
+    print("\033[1;36m ║  [3][C] OPEN FACEBOOK PAGE     \033[1;36m║")
+    print("\033[1;36m ║  [0][X] EXIT                   \033[1;36m║")
+    print("\033[1;96m ╚═════════════════════════════════╝")
+    choice = input('\033[1;32m SELECT OPTION : \033[1;36m ')
+    if choice in ["1","A"]:
+        WACIQ_crack()
+    elif choice in ["2","B"]:
+        os.system('xdg-open https://facebook.com/groups/544684501030088/')
+    elif choice in ["3","C"]:
+        os.system('xdg-open https://www.facebook.com/BCS.Bangladesh.Cyber.Export.Official')
+    elif choice in ["0","X"]:
+        exit()
 
-# انیمیشن کنټرول
-_stop_logo_event = threading.Event()
-_logo_thread = None
+def WACIQ_crack():
+    user = []
+    os.system('clear')
+    print(logo)
+    code = input('\033[1;32m ENTER CODE :\033[1;36m ')
+    os.system('clear')
+    limit = int(input("\033[1;32m TOTAL NUMBERS TO GENERATE :\033[1;36m "))
+    for _ in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(8))
+        user.append(nmp)
 
-def _clear():
-    try:
-        sys.stdout.write("\033c")
-    except Exception:
+    def Jaberm(uid, pwx, tl):
+        # Placeholder for cracking logic
         pass
 
-def _center(line):
-    cols = shutil.get_terminal_size((80, 20)).columns
-    pad = max(0, (cols - len(line)) // 2)
-    return ' ' * pad + line
+    with ThreadPool(max_workers=40) as executor:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print(f"\033[1;91m TOTAL: {tl}")
+        for love in user:
+            pwx = [love, love[2:], code+love[:3], 'FreeFire','Pubg123','TikTok','Alh4aj']
+            uid = code + love
+            executor.submit(Jaberm, uid, pwx, tl)
 
-def _animated_logo_once(duration=1.6, fps=12):
-    """لنډ sparkle او رنگی چوکاټونه د LOGO لپاره."""
-    lines = LOGO.strip('\n').splitlines()
-    frames = int(duration * fps)
-    for f in range(frames):
-        if _stop_logo_event.is_set():
-            return
-        _clear()
-        color = COLOR_CYCLE[f % len(COLOR_CYCLE)]
-        # چاپ لوگو په center سره
-        for ln in lines:
-            print(_center(color + BOLD + ln + RESET))
-        # تصادفي ستوري/سپارکل په پرده کې
-        cols = shutil.get_terminal_size((80, 20)).columns
-        star_count = random.randint(6, 12)
-        for _ in range(star_count):
-            try:
-                r = random.randint(0, len(lines) - 1)
-                c = random.randint(0, cols - 1)
-                # cursor movement: که ترمینل ملاتړ ونکړي، نو دا بلاک به خاموش پاتې شي
-                sys.stdout.write("\033[s")  # save cursor
-                sys.stdout.write(f"\033[{3 + r};{c}H")  # approximate position
-                sys.stdout.write(random.choice(COLOR_CYCLE) + BOLD + "*" + RESET)
-                sys.stdout.write("\033[u")  # restore
-            except Exception:
-                pass
-        sys.stdout.flush()
-        time.sleep(1.0 / fps)
+    print("\033[1;91m HACKED COMPLETE")
+    print("HI IM WACIQ")
 
-def _reveal_center_text(lines, char_delay=0.002, line_pause=0.05):
-    """ورو ورو هر کرښه د مرکز په ښودلو سره جوړوي (character by character)."""
-    for ln in lines:
-        if _stop_logo_event.is_set():
-            return
-        centered = _center(ln)
-        out = ""
-        for ch in centered:
-            out += ch
-            sys.stdout.write(BOLD + COLOR_CYCLE[0] + out + RESET + "\r")
-            sys.stdout.flush()
-            time.sleep(char_delay)
-        sys.stdout.write(BOLD + COLOR_CYCLE[0] + centered + RESET + "\n")
-        sys.stdout.flush()
-        time.sleep(line_pause)
-
-def _logo_animation_loop(loop_forever=False):
-    """بشپړ انیمیشن: sparkle بیا reveal."""
-    try:
-        while not _stop_logo_event.is_set():
-            _animated_logo_once(duration=1.6, fps=14)
-            if _stop_logo_event.is_set():
-                break
-            _clear()
-            # د LOGO کرښې ورو ورو بیا وښیه (دلته هم د LOGO استعمالیږي)
-            lines = LOGO.strip('\n').splitlines()
-            _reveal_center_text(lines, char_delay=0.003, line_pause=0.06)
-            time.sleep(0.6)
-            if not loop_forever:
-                break
-    except Exception:
-        pass
-
-def start_logo_thread(loop_forever=False):
-    """انیمیشن په دیمان thread کې شروع کوي."""
-    global _logo_thread, _stop_logo_event
-    if _logo_thread and _logo_thread.is_alive():
-        return _logo_thread
-    _stop_logo_event.clear()
-    _logo_thread = threading.Thread(target=_logo_animation_loop, args=(loop_forever,), daemon=True)
-    _logo_thread.start()
-    return _logo_thread
-
-def stop_logo_thread(timeout=0.5):
-    """انیمیشن ودروي او thread ته وخت ورکوي چې وتړل شي."""
-    global _logo_thread, _stop_logo_event
-    _stop_logo_event.set()
-    if _logo_thread:
-        _logo_thread.join(timeout=timeout)
-        _logo_thread = None
-
-# --------------- د کارولو مثال ----------------
 if __name__ == "__main__":
-    # انیمیشن شروع او وروسته مثلاً مینو ښکاره کړئ
-    start_logo_thread(loop_forever=False)  # یو ځل انیمیشن
-    time.sleep(2.0)                        # څو ثانیې لپاره اجازه ورکړئ ښکاره شي
-    stop_logo_thread()
-    _clear()
-    # اوس اصلي لوگو چاپ کړئ او مینو یا نور څه وښایئ
-    for ln in LOGO.strip('\n').splitlines():
-        print(_center(BOLD + COLOR_CYCLE[0] + ln + RESET))
-    print("\n")
-    print(_center("=== Welcome to WACIQ ==="))
-    # دلته خپل menu یا نور چاپ کول ایښودلای شئ 
+    WACIQ() 
 	def Jaberm(uid,pwx,tl): 
     global loop
     global cps
