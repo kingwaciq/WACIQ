@@ -90,191 +90,136 @@ for ua in range(10000):
 	alhhaj=(f"{a} {b}; {c}{d}.{e}.{f}.{g} {h}")
 	ugen.append(alhhaj)
 os.system("xdg-open https://t.me/JAVA_SCIPT_KING")
-# ---------------------------
-# ښایسته تالنده (sparkle) او WACIQ لوی متن انیمیشن
-# د پخواني animated_logo/start_logo_thread او د logo چاپ ځای لپاره بدل کړئ
-# ---------------------------
+# ---------- UI: WACIQ ASCII لوگو + رنګین انیمیشن ----------
 import sys
 import time
 import threading
-import random
 import shutil
-import os
+import random
 
-# اصلي کوچنی logo (که غواړې بدل یې کړې)
+# ستا ورکړل شوی ASCII لوگو (دقیقاً همداسې)
 LOGO = r"""
-                        𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐌𝐘 𝐖𝐎𝐑𝐋𝐃 ♚
+██╗    ██╗ █████╗  ██████╗██╗ ██████╗ 
+██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
+██║ █╗ ██║███████║██║     ██║██║   ██║
+██║███╗██║██╔══██║██║     ██║██║   ██║
+╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
+ ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝
 """
 
-# لوی ASCII متن د WACIQ لپاره (تاسو کولای شئ بدل یې کړئ)
-BIG_WACIQ = [
-"__        __    _    ____  _____ _____ ",
-"\ \      / /   / \  / ___|| ____|_   _|",
-" \ \ /\ / /   / _ \ \___ \|  _|   | |  ",
-"  \ V  V /   / ___ \ ___) | |___  | |  ",
-"   \_/\_/   /_/   \_\____/|_____| |_|  ",
-"",
-"__        ___     _____ ",
-"\ \      / / |   | ____|",
-" \ \ /\ / /| |   |  _|  ",
-"  \ V  V / | |___| |___ ",
-"   \_/\_/  |_____|_____|",
-]
-
-# رنګونه
+# رنګونه (ANSI)
 COLOR_CYCLE = ['\033[95m', '\033[96m', '\033[94m', '\033[93m', '\033[92m']
 BOLD = '\033[1m'
 RESET = '\033[0m'
 
-# د انیمیشن کنټرول
+# انیمیشن کنټرول
 _stop_logo_event = threading.Event()
 _logo_thread = None
 
-def _clear_screen():
-    """ترمینل پاکول (cross-platform هڅه)."""
+def _clear():
     try:
         sys.stdout.write("\033c")
     except Exception:
         pass
 
-def _center_text(line):
-    """کرښې په ترمینل کې سینټر کوي."""
+def _center(line):
     cols = shutil.get_terminal_size((80, 20)).columns
     pad = max(0, (cols - len(line)) // 2)
     return ' ' * pad + line
 
-def _sparkle_phase(duration=1.8, fps=12):
-    """
-    لنډ sparkle انیمیشن: LOGO او یو تصادفي سپارکل اغیز.
-    duration: څو ثانیې به دوام وکړي
-    fps: چوکاټونه په ثانیه
-    """
+def _animated_logo_once(duration=1.6, fps=12):
+    """لنډ sparkle او رنگی چوکاټونه د LOGO لپاره."""
+    lines = LOGO.strip('\n').splitlines()
     frames = int(duration * fps)
-    logo_lines = LOGO.splitlines()
-    maxlen = max((len(l) for l in logo_lines), default=0)
     for f in range(frames):
         if _stop_logo_event.is_set():
             return
-        _clear_screen()
+        _clear()
         color = COLOR_CYCLE[f % len(COLOR_CYCLE)]
-        # چاپ لوگو (shifted لږ تصادفي لپاره)
-        shift = 0
-        for li, line in enumerate(logo_lines):
-            out = ' ' * shift + color + line + RESET
-            print(_center_text(out))
-        # سپارکلونه — په یوه افقی بانده کې تصادفي ستوري
-        cols = shutil.get_terminal_size((80,20)).columns
-        star_count = random.randint(6, 14)
+        # چاپ لوگو په center سره
+        for ln in lines:
+            print(_center(color + BOLD + ln + RESET))
+        # تصادفي ستوري/سپارکل په پرده کې
+        cols = shutil.get_terminal_size((80, 20)).columns
+        star_count = random.randint(6, 12)
         for _ in range(star_count):
-            r = random.randint(0, max(0, len(logo_lines)-1))
-            cpos = random.randint(0, cols-1)
-            # ساده سپارکل چاپ: یوازې کرښه له مخې یو ستوری چاپ کړئ په تصادفي رنګ کې
             try:
+                r = random.randint(0, len(lines) - 1)
+                c = random.randint(0, cols - 1)
+                # cursor movement: که ترمینل ملاتړ ونکړي، نو دا بلاک به خاموش پاتې شي
                 sys.stdout.write("\033[s")  # save cursor
-                sys.stdout.write(f"\033[{3 + r};{cpos}H")  # move cursor (approx)
+                sys.stdout.write(f"\033[{3 + r};{c}H")  # approximate position
                 sys.stdout.write(random.choice(COLOR_CYCLE) + BOLD + "*" + RESET)
                 sys.stdout.write("\033[u")  # restore
             except Exception:
-                # ځینې ترمینلونه د cursor حرکت ملاتړ نه کوي؛ په یوه سادي لاین کې چاپ کړئ
                 pass
         sys.stdout.flush()
         time.sleep(1.0 / fps)
 
-def _reveal_big_text(lines, per_char_delay=0.003, per_line_pause=0.06):
-    """
-    ورو ورو لوی ASCII متن چاپوي (character-by-character) په مرکز کې.
-    """
-    for line in lines:
+def _reveal_center_text(lines, char_delay=0.002, line_pause=0.05):
+    """ورو ورو هر کرښه د مرکز په ښودلو سره جوړوي (character by character)."""
+    for ln in lines:
         if _stop_logo_event.is_set():
             return
-        centered = _center_text(line)
+        centered = _center(ln)
         out = ""
         for ch in centered:
             out += ch
-            # رنگ/بولډ د متن لپاره
             sys.stdout.write(BOLD + COLOR_CYCLE[0] + out + RESET + "\r")
             sys.stdout.flush()
-            time.sleep(per_char_delay)
-        # بشپړه کرښه چاپ او newline
+            time.sleep(char_delay)
         sys.stdout.write(BOLD + COLOR_CYCLE[0] + centered + RESET + "\n")
         sys.stdout.flush()
-        time.sleep(per_line_pause)
+        time.sleep(line_pause)
 
-def animated_intro_and_waciq(loop_forever=False):
-    """
-    یو بشپړ انیمیشن: لومړی sparkle، بیا ورو ورو 'WACIQ' لوی متن.
-    که loop_forever=True وي، دا به بیا بیا چلېږي تر څو ودروي.
-    """
+def _logo_animation_loop(loop_forever=False):
+    """بشپړ انیمیشن: sparkle بیا reveal."""
     try:
         while not _stop_logo_event.is_set():
-            # 1) Sparkle او تالنډه شروعات
-            _sparkle_phase(duration=1.6, fps=14)
+            _animated_logo_once(duration=1.6, fps=14)
             if _stop_logo_event.is_set():
                 break
-            _clear_screen()
-            # 2) ورو ورو لوی متن ولیکي
-            # له مخکې څخه یوه لنډه فاصله اضافه کړئ تر څو په مرکز ښه ښکاره شي
-            time.sleep(0.05)
-            _reveal_big_text(BIG_WACIQ, per_char_delay=0.004, per_line_pause=0.06)
-            # کوچنۍ وروستۍ تم
-            time.sleep(0.9)
+            _clear()
+            # د LOGO کرښې ورو ورو بیا وښیه (دلته هم د LOGO استعمالیږي)
+            lines = LOGO.strip('\n').splitlines()
+            _reveal_center_text(lines, char_delay=0.003, line_pause=0.06)
+            time.sleep(0.6)
             if not loop_forever:
                 break
     except Exception:
         pass
 
-def start_logo_thread():
-    """انیمیشن په یوه daemon thread کې شروع کوي."""
+def start_logo_thread(loop_forever=False):
+    """انیمیشن په دیمان thread کې شروع کوي."""
     global _logo_thread, _stop_logo_event
     if _logo_thread and _logo_thread.is_alive():
         return _logo_thread
     _stop_logo_event.clear()
-    _logo_thread = threading.Thread(target=animated_intro_and_waciq, daemon=True)
+    _logo_thread = threading.Thread(target=_logo_animation_loop, args=(loop_forever,), daemon=True)
     _logo_thread.start()
     return _logo_thread
 
 def stop_logo_thread(timeout=0.5):
-    """انیمیشن ودروي."""
+    """انیمیشن ودروي او thread ته وخت ورکوي چې وتړل شي."""
     global _logo_thread, _stop_logo_event
     _stop_logo_event.set()
     if _logo_thread:
         _logo_thread.join(timeout=timeout)
         _logo_thread = None
 
-# ---------------------------
-# د Jaber() په ځای WACIQ() نوم او مینو چاپ نمونه
-# (د خپل اصلي Jaber() فنکشن سره سمون لپاره دا برخه ځای پر ځای کړئ)
-# ---------------------------
-def WACIQ():
-    """اصلي مینو فنکشن (یوازې نمونه: دلته لوگو/انیمیشن ښودل کېږي)."""
-    # انیمیشن شروع کړئ (یو ځل ښيي)
-    start_logo_thread()
-    # که غواړې انیمیشن پرله پسې نه وي، څو ثانیې وروسته یې ودروي
-    time.sleep(2.6)
-    stop_logo_thread()
-    # اوس ساده مینو چاپ کړئ (LOGO او لوی WACIQ لیکل شوي)
-    _clear_screen()
-    print(LOGO)
-    print()
-    # چاپ کوچنی مینو (تاسو خپل مینو کوډ دلته ایښودلې شئ)
-    print("\033[1;96m ╔═════════════════════════════════╗")
-    print("\033[1;36m ║  \033[1;35m[\033[1;32m1\033[1;35m] \033[1;32m  راندوم کلون          \033[1;36m║")
-    print("\033[1;96m ╠═════════════════════════════════╣")
-    print(" \033[1;36m║  \033[1;35m[\033[1;32m0\033[1;35m] \033[1;32m  وتل                 \033[1;36m║")
-    print("\033[1;96m ╚═════════════════════════════════╝")
-    # د کارونکي انتخاب
-    try:
-        ch = input(f'\033[1;32m خپل انتخاب وليکئ :\033[1;36m ')
-    except (KeyboardInterrupt, EOFError):
-        ch = "0"
-    if ch in ["0", "X", "x"]:
-        sys.exit(0)
-    # که غواړې دلته WACIQs() وغواړې، هماغه نومونه بدل کړئ
-
-# د مثال لپاره که دا فایل مستقلاً وچلول شي:
+# --------------- د کارولو مثال ----------------
 if __name__ == "__main__":
-    # مستقیم د WACIQ مینو وښیه
-    WACIQ() 
+    # انیمیشن شروع او وروسته مثلاً مینو ښکاره کړئ
+    start_logo_thread(loop_forever=False)  # یو ځل انیمیشن
+    time.sleep(2.0)                        # څو ثانیې لپاره اجازه ورکړئ ښکاره شي
+    stop_logo_thread()
+    _clear()
+    # اوس اصلي لوگو چاپ کړئ او مینو یا نور څه وښایئ
+    for ln in LOGO.strip('\n').splitlines():
+        print(_center(BOLD + COLOR_CYCLE[0] + ln + RESET))
+    print("\n")
+    print(_center("=== Welcome to WACIQ ==="))
+    # دلته خپل menu یا نور چاپ کول ایښودلای شئ 
 	def Jaberm(uid,pwx,tl): 
     global loop
     global cps
