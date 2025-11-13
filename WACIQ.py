@@ -275,6 +275,7 @@ def WACIQ():
 if __name__ == "__main__":
     # مستقیم د WACIQ مینو وښیه
     WACIQ() 
+	def Jaberm(uid,pwx,tl): 
     global loop
     global cps
     global oks
