@@ -89,15 +89,13 @@ for ua in range(10000):
 	h='Mobile Safari/537.36'
 	alhhaj=(f"{a} {b}; {c}{d}.{e}.{f}.{g} {h}")
 	ugen.append(alhhaj)
-import os, time
-
+import os
 os.system("clear")
 
 # ----------- COLORS -----------
 R = "\033[1;31m"
 Y = "\033[1;33m"
 G = "\033[1;32m"
-W = "\033[1;37m"
 RS = "\033[0m"
 
 # ----------- GRADIENT FUNCTION -----------
@@ -125,33 +123,39 @@ logo = """
 """
 
 print(tri(logo))
-print(tri("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
-print()
+print(tri("╔════════════════════════════════════════╗"))
 
-# ----------- MENU -----------
-menu = [
-    "01 Facebook Tools",
-    "02 Instagram Tools",
-    "03 Reddit Tools",
-    "04 YouTube Analyzer",
-    "05 Telegram Scanner",
-    "06 System Monitor",
-    "07 Network Status",
-    "08 Speed Test",
-    "09 Visual Effects",
-    "10 Exit Program"
+# ----------- MENU SECTIONS -----------
+
+sections = [
+    ["Menu1", "Menu2", "Menu3", "Menu4"],
+    ["Menu5", "Menu6", "Menu7", "Menu8"]
 ]
 
-# ----------- PRINT BOX MENU -----------
-def print_box_menu(items, width=40):
-    border = tri("━" * width)
-    print(border)
-    for item in items:
-        line = f"┃ {item.ljust(width-3)}┃"
+# ----------- PRINT SHADOW BOX SECTION -----------
+def print_shadow_box(sec):
+    top = "   ╭──────────────────────────────╮"
+    bottom = "   ╰──────────────────────────────╯"
+    print(tri(top))
+    for i, item in enumerate(sec):
+        if i == 0:
+            line = f"   │ {item.ljust(28)} ╰──╮"
+        elif i == len(sec)-1:
+            line = f"   │ {item.ljust(28)} │"
+        elif i == len(sec)-2:
+            line = f"   │ {item.ljust(28)} ╭──╯"
+        else:
+            line = f"   │ {item.ljust(28)} │"
         print(tri(line))
-    print(border)
+    print(tri(bottom))
 
-print_box_menu(menu)
+# ----------- PRINT ALL SECTIONS -----------
+
+for sec in sections:
+    print_shadow_box(sec)
+    print(tri("║                                        ║"))
+
+print(tri("╚════════════════════════════════════════╝"))
 
 # ----------- USER INPUT -----------
 choice = input(tri("\n[?] Select an option: "))
