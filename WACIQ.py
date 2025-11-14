@@ -89,116 +89,119 @@ for ua in range(10000):
 	h='Mobile Safari/537.36'
 	alhhaj=(f"{a} {b}; {c}{d}.{e}.{f}.{g} {h}")
 	ugen.append(alhhaj)
-import os, time, sys, random
+import os, random, time, sys
+
+# Clear
 os.system("clear")
 
-# -------------- COLORS --------------
-R = "\033[1;31m"   # Red
-Y = "\033[1;33m"   # Yellow
-G = "\033[1;32m"   # Green
-C = "\033[1;36m"   # Cyan
+# ----------- COLORS -----------
+R = "\033[1;31m"
+Y = "\033[1;33m"
+G = "\033[1;32m"
+C = "\033[1;36m"
+M = "\033[1;35m"
 W = "\033[1;37m"
 RS = "\033[0m"
 
-# -------------- TYPE EFFECT --------------
-def typefx(text, speed=0.002):
-    for c in text:
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(speed)
-    print()
+# ----------- NEON GRADIENT FUNCTION -----------
+def neon(text):
+    out = ""
+    L = len(text)
+    for i, ch in enumerate(text):
+        p = i / L
+        if p < 0.33:
+            out += R + ch
+        elif p < 0.66:
+            out += Y + ch
+        else:
+            out += G + ch
+    return out + RS
 
-# -------------- RANDOM GLITCH FLASH --------------
-def glitch():
-    chars = "█▓▒░▓▒░█"
-    for _ in range(12):
-        line = "".join(random.choice(chars) for _ in range(80))
-        print(f"\033[1;3{random.randint(1,7)}m{line}{RS}")
-        time.sleep(0.02)
-    os.system("clear")
+# ----------- CYBER FONT -----------
+cyber = {
+    "A":"ᗩ","B":"ᗷ","C":"ᑕ","D":"ᗪ","E":"ᗴ","F":"ᖴ","G":"ᘜ",
+    "H":"ᕼ","I":"ᓰ","J":"ᒍ","K":"ᖽ","L":"ᒪ","M":"ᗰ","N":"ᑎ",
+    "O":"O","P":"ᑭ","Q":"ᑫ","R":"ᖇ","S":"ᔕ","T":"ᖶ","U":"ᑌ",
+    "V":"ᐯ","W":"ᗯ","X":"᙭","Y":"Ꭹ","Z":"ᘔ"
+}
 
-# -------------- MATRIX RAIN INTRO --------------
-def matrix_intro():
-    cols = 80
-    chars = "01▒▓░"
-    for _ in range(25):
-        line = "".join(random.choice(chars) for _ in range(cols))
-        print(f"\033[1;3{random.randint(2,6)}m{line}{RS}")
+def cyber_font(text):
+    return "".join(cyber.get(c.upper(), c) for c in text)
+
+# ----------- GLITCH TEXT EFFECT -----------
+def glitch(text):
+    for _ in range(2):
+        garb = ''.join(random.choice("@#$%&*") for _ in range(len(text)))
+        print(C + garb + RS, end="\r")
+        time.sleep(0.05)
+    print(neon(text))
+
+# ----------- MATRIX RAIN INTRO -----------
+def matrix_rain(lines=10):
+    chars = "01░▒▓"
+    for _ in range(lines):
+        row = "".join(random.choice(chars) for __ in range(80))
+        print(G + row + RS)
         time.sleep(0.03)
 
-# -------------- PRINT GRADIENT LOGO --------------
-logo = f"""
-{R}██╗    ██╗ █████╗  ██████╗██╗ ██████╗
+# ----------- GRADIENT LOGO FUNCTION -----------
+def tri(text):
+    out = ""
+    L = len(text)
+    for i, ch in enumerate(text):
+        p = i / L
+        if p < 0.33:
+            out += R + ch
+        elif p < 0.66:
+            out += Y + ch
+        else:
+            out += G + ch
+    return out + RS
+
+# ----------- ASCII LOGO -----------
+logo = """
+██╗    ██╗ █████╗  ██████╗██╗ ██████╗ 
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
-{Y}██║ █╗ ██║███████║██║     ██║██║   ██║
+██║ █╗ ██║███████║██║     ██║██║   ██║
 ██║███╗██║██╔══██║██║     ██║██║   ██║
-{G}╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝{RS}
+╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
+ ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ 
 """
 
-# ---------- RUN ANIMATIONS ----------
-glitch()
-matrix_intro()
-time.sleep(0.3)
-typefx(logo, 0.0009)
+# ----------- SHOW START ANIMATION -----------
+matrix_rain()
+print(tri(logo))
+glitch(cyber_font("JABER SYSTEM"))
+glitch(cyber_font("CYBER MENU 2.0"))
 
-typefx(f"{R}[ PyMenu X – Cyber Demon Edition ] {W}(By Jaber)\n", 0.005)
+print()
+print(neon("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
+print()
 
-# -------------- 3 COLUMN MENU --------------
-left = [
-    "01 Facebook Traditional",
-    "02 Facebook Voting",
-    "03 Facebook Security",
-    "04 Messenger",
-    "05 Instagram Old",
-    "06 Insta Followers",
-    "07 Gmail Old",
-    "08 Gmail New",
-    "09 Microsoft",
-    "10 Netflix",
+# ----------- MENU -----------
+menu = [
+    "Facebook Tools",
+    "Instagram Tools",
+    "Reddit Tools",
+    "YouTube Analyzer",
+    "Telegram Scanner",
+    "System Monitor",
+    "Network Status",
+    "Speed Test",
+    "Visual Effects",
+    "Exit Program"
 ]
 
-mid = [
-    "27 Reddit",
-    "28 Adobe",
-    "29 DeviantArt",
-    "30 Badoo",
-    "31 Clash Of Clans",
-    "32 Ajio",
-    "33 FreeFire",
-    "34 Pubg",
-    "35 Telegram",
-    "36 YouTube",
-]
+for item in menu:
+    print(neon(cyber_font(item)))
+    time.sleep(0.05)
 
-right = [
-    "53 Gitlab",
-    "54 Github",
-    "55 Apple",
-    "56 iCloud",
-    "57 Vimeo",
-    "58 Myspace",
-    "59 Venmo",
-    "60 Crypto",
-    "61 SnapChat",
-    "62 Verizon",
-]
+print()
+print(neon("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
 
-print(R + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" + RS)
-
-for a, b, c in zip(left, mid, right):
-    print(
-        f"{R}{a:<25}{G}{b:<25}{Y}{c:<25}{RS}"
-    )
-    time.sleep(0.03)
-
-print(R + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n" + RS)
-
-# -------------- FOOTER --------------
-typefx(f"{G}[a] About    {Y}[s] Saved    {R}[x] More Tools    {W}[0] Exit\n", 0.01)
-
-choice = input(f"{C}[?] Enter choice: {RS}")
-print(f"\n{G}[✓] You selected: {choice}{RS}") 
+# ----------- INPUT -----------
+choice = input(neon("\n[?] Select an option: "))
+print(neon(f"\n[✓] You selected: {choice}\n")) 
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
