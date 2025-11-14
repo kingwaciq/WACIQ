@@ -149,7 +149,7 @@ sections = [
 print(tri("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"))
 
 for sec in sections:
-    title_line = f"▒──────────────────────────────────────────────────▒"
+    title_line = f"▒──────────────────────────────────────────────▒"
     print(tri(title_line))
     
     for i in range(4):
@@ -158,12 +158,12 @@ for sec in sections:
         line = f" {left_item.ljust(12)}   {right_item.ljust(12)}      "
         type_print(tri(line), delay=0.01)
     
-    bottom_line = f"▒─────────────────────────────────────────────────▒"
+    bottom_line = f"▒─────────────────────────────────────────────▒"
     print(tri(bottom_line))
     
     # Separator / Shadow
     if sec == sections[0]:
-        print(tri("│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░                      ▒"))
+        print(tri("│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░            ▒"))
 
 print(tri("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"))
 
