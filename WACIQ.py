@@ -94,20 +94,18 @@ import os, sys, time
 os.system("clear")
 
 # ---------- COLORS ----------
-R = "\033[1;31m"
-Y = "\033[1;33m"
-G = "\033[1;32m"
-RS = "\033[0m"
+R = "\033[1;31m"  # Red
+Y = "\033[1;33m"  # Yellow
+G = "\033[1;32m"  # Green
+RS = "\033[0m"     # Reset
+BOLD = "\033[1m"
 
-# ---------- GRADIENT ----------
-def tri(text):
+# ---------- DIAGONAL GRADIENT ----------
+def diagonal(text, offset=0):
     out = ""
-    L = len(text)
+    colors = [R, Y, G]
     for i, ch in enumerate(text):
-        p = i / L
-        if p < 0.33: out += R + ch
-        elif p < 0.66: out += Y + ch
-        else: out += G + ch
+        out += colors[(i+offset) % 3] + BOLD + ch
     return out + RS
 
 # ---------- TYPING EFFECT ----------
@@ -127,11 +125,13 @@ logo = """
 ╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
  ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ 
 """
+term_width = 80
+for line in logo.splitlines():
+    print(diagonal(line.center(term_width)))
 
-print(tri(logo))
 time.sleep(0.2)
 
-# ---------- SECTIONS ----------
+# ---------- MENU DATA ----------
 sections = [
     {
         "title": "Social Media",
@@ -152,56 +152,54 @@ sections = [
 # ---------- BOX SETUP ----------
 box_width = 28
 space = 3
-total = box_width*2 + space + 1   # +1 for middle │
+total_width = box_width*2 + space + 1  # +1 for middle │
+top = "▒" * (total_width + 2)
 
-# Create flat list of all items with numbers
+# Center top border
+print(diagonal(top.center(term_width)))
+
+# ---------- RENDER SECTIONS ----------
+number = 1
+for sec in sections:
+    # Section title
+    title = f"▒{sec['title'].center(total_width)}▒"
+    print(diagonal(title.center(term_width)))
+
+    # Top line
+    print(diagonal(("▒" + "─"*total_width + "▒").center(term_width)))
+
+    # Menu items
+    for i in range(8):
+        left_item = f"[{number}] {sec['left'][i]}".ljust(box_width)
+        number += 1
+        right_item = f"[{number}] {sec['right'][i]}".ljust(box_width)
+        number += 1
+        line = f"▒{diagonal(left_item, i)}│{diagonal(right_item, i)}▒"
+        type_print(line.center(term_width), delay=0.004)
+
+    # Bottom line
+    print(diagonal(("▒" + "─"*total_width + "▒").center(term_width)))
+
+    # Shadow separator
+    if sec != sections[-1]:
+        print(diagonal(("▒" + "░"*total_width + "▒").center(term_width)))
+
+# Bottom border
+print(diagonal(top.center(term_width)))
+
+# ---------- USER INPUT ----------
+choice = input(diagonal("\n[?] Select an option (number): ").center(term_width))
+
+# Map number to item
 all_items = []
 count = 1
 for sec in sections:
-    for l, r in zip(sec['left'], sec['right']):
+    for l,r in zip(sec['left'], sec['right']):
         all_items.append((count, l))
         count += 1
         all_items.append((count, r))
         count += 1
 
-# ---------- TOP BORDER ----------
-top = "▒" * (total + 2)
-print(tri(top))
-
-# ---------- RENDER SECTIONS ----------
-number = 1
-for sec in sections:
-
-    # Title Bar
-    title = f"▒{sec['title'].center(total)}▒"
-    print(tri(title))
-
-    # Top line inside section
-    print(tri("▒" + "─"*total + "▒"))
-
-    # Items
-    for i in range(8):
-        left_item = f"〔{number}〕 {sec['left'][i]}".ljust(box_width)
-        number += 1
-        right_item = f"〔{number}〕 {sec['right'][i]}".ljust(box_width)
-        number += 1
-        line = f"▒{left_item}│{right_item}▒"
-        type_print(tri(line), delay=0.004)
-
-    # Bottom line
-    print(tri("▒" + "─"*total + "▒"))
-
-    # Shadow / separator
-    if sec != sections[-1]:
-        print(tri("▒" + "░"*total + "▒"))
-
-# ---------- FINAL BOTTOM ----------
-print(tri(top))
-
-# ---------- USER INPUT ----------
-choice = input(tri("\n[?] Select an option (number): "))
-
-# Map number to item
 selected_item = None
 for num, item in all_items:
     if str(num) == choice.strip():
@@ -209,9 +207,9 @@ for num, item in all_items:
         break
 
 if selected_item:
-    type_print(tri(f"\n[✓] You selected: {selected_item}\n"), delay=0.01)
+    type_print(diagonal(f"\n[✓] You selected: {selected_item}\n").center(term_width), delay=0.01)
 else:
-    type_print(tri("\n[✗] Invalid selection!\n"), delay=0.01)  
+    type_print(diagonal("\n[✗] Invalid selection!\n").center(term_width), delay=0.01) 
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
