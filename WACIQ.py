@@ -157,38 +157,42 @@ sections = [
 # ---------- BOX SETUP ----------
 box_width = 28
 space = 3
-total = box_width*2 + space + 1
+total = box_width*2 + space + 1  # total width inside box
 
-# ---------- TOP BORDER ----------
+# Terminal width (adjust if smaller screen)
+term_width = 80
+
+# Center the top border
 top = "▒" * (total + 2)
-print(tri(top))
+top_centered = top.center(term_width)
+print(diagonal(top_centered))
 
 # ---------- RENDER SECTIONS ----------
 for sec in sections:
 
-    # Title Bar
+    # Section Title (centered inside box)
     title = f"▒{sec['title'].center(total)}▒"
-    print(tri(title))
+    print(diagonal(title.center(term_width)))
 
     # Top line inside section
-    print(tri("▒" + "─"*total + "▒"))
+    print(diagonal(("▒" + "─" * total + "▒").center(term_width)))
 
-    # 8+8 Items
+    # 8+8 Menu items
     for i in range(8):
         left_item = f"➤ 〔{i+1}〕 {sec['left'][i]}".ljust(box_width)
         right_item = f"➤ 〔{i+1}〕 {sec['right'][i]}".ljust(box_width)
-        line = f"▒{left_item}│{right_item}▒"
-        type_print(tri(line), delay=0.004)
+        line = f"▒{diagonal(left_item, i)}│{diagonal(right_item, i+1)}▒"
+        type_print(line.center(term_width), delay=0.004)
 
     # Bottom line
-    print(tri("▒" + "─"*total + "▒"))
+    print(diagonal(("▒" + "─" * total + "▒").center(term_width)))
 
-    # Shadow (except last)
+    # Shadow / separator
     if sec != sections[-1]:
-        print(tri("▒" + "░"*total + "▒"))
+        print(diagonal(("▒" + "░" * total + "▒").center(term_width)))
 
-# ---------- FINAL BOTTOM ----------
-print(tri(top))
+# Bottom border
+print(diagonal(top.center(term_width))) 
 
 # ---------- INPUT ----------
 choice = input(tri("\n[?] Select an option: "))
