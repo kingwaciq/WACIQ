@@ -149,20 +149,15 @@ box_width = 20
 space_between = 4
 total_width = box_width*2 + space_between
 
-#----------- BOX DIMENSIONS -----------
-box_width = 20
-space_between = 4
-total_width = box_width*2 + space_between
-
-#----------- PRINT TOP BORDER -----------
+# ----------- PRINT TOP BORDER -----------
 top_border = "▒" * (total_width + 2)
 print(tri(top_border))
 
-#----------- PRINT SECTIONS -----------
+# ----------- PRINT SECTIONS -----------
 for sec in sections:
 
     # Section top line
-    title_line = "─" * (total_width + 2)
+    title_line = "▒" * (total_width + 2)
     print(tri(title_line))
 
     # Menu items
@@ -176,16 +171,15 @@ for sec in sections:
         type_print(tri(line), delay=0.01)
 
     # Section bottom line
-    bottom_line = "─" * (total_width + 2)
+    bottom_line = "▒" * (total_width + 2)
     print(tri(bottom_line))
 
-    # Shadow/Separator for each section
+    # Shadow/Separator (for all sections)
     shadow_line = "─" + "░"*total_width + "▒"
-    print(tri(shadow_line))
+    print(tri(shadow_line)) 
 
-#----------- PRINT BOTTOM BORDER -----------
+# ----------- PRINT BOTTOM BORDER -----------
 print(tri(top_border)) 
-
 # ----------- USER INPUT -----------
 choice = input(tri("\n[?] Select an option: "))
 type_print(tri(f"\n[✓] You selected: {choice}\n"), delay=0.01) 
