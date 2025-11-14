@@ -150,13 +150,13 @@ space_between = 4
 total_width = box_width*2 + space_between
 
 # ----------- PRINT TOP BORDER -----------
-top_border = "▒" + "▒"*total_width + "▒"
+top_border = "▒" + "─"*total_width + "▒"
 print(tri(top_border))
 
 # ----------- PRINT SECTIONS -----------
 for sec in sections:
     # Section top line
-    title_line = "▒" + "▒"*total_width + "▒"
+    title_line = "▒" + "─"*total_width + "▒"
     print(tri(title_line))
     
     # Menu items
@@ -169,7 +169,7 @@ for sec in sections:
         type_print(tri(line), delay=0.01)
     
     # Section bottom line
-    bottom_line = "▒" + "▒"*total_width + "▒"
+    bottom_line = "▒" + "─"*total_width + "▒"
     print(tri(bottom_line))
     
     # Shadow / separator between sections
@@ -182,7 +182,7 @@ print(tri(top_border))
 
 # ----------- USER INPUT -----------
 choice = input(tri("\n[?] Select an option: "))
-type_print(tri(f"\n[✓] You selected: {choice}\n"), delay=0.01)  
+type_print(tri(f"\n[✓] You selected: {choice}\n"), delay=0.01) 
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
