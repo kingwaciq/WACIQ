@@ -94,19 +94,11 @@ import os, sys, time
 os.system("clear")
 
 # ---------- COLORS ----------
-R = "\033[1;31m"  # Red
-Y = "\033[1;33m"  # Yellow
-G = "\033[1;32m"  # Green
-RS = "\033[0m"     # Reset
+R = "\033[1;31m"
+Y = "\033[1;33m"
+G = "\033[1;32m"
+RS = "\033[0m"
 BOLD = "\033[1m"
-
-# ---------- DIAGONAL GRADIENT ----------
-def diagonal(text, offset=0):
-    out = ""
-    colors = [R, Y, G]
-    for i, ch in enumerate(text):
-        out += colors[(i+offset) % 3] + BOLD + ch
-    return out + RS
 
 # ---------- TYPING EFFECT ----------
 def type_print(text, delay=0.008):
@@ -125,13 +117,14 @@ logo = """
 ╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
  ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ 
 """
-term_width = 80
-for line in logo.splitlines():
-    print(diagonal(line.center(term_width)))
+print(BOLD + R + logo + RS)
 
+# ---------- SMALL ASCII NAME BELOW LOGO ----------
+ascii_name = " WACIQ SYSTEM "
+print(BOLD + Y + ascii_name.center(80) + RS + "\n")
 time.sleep(0.2)
 
-# ---------- MENU DATA ----------
+# ---------- SECTIONS ----------
 sections = [
     {
         "title": "Social Media",
@@ -146,27 +139,40 @@ sections = [
                  "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder"],
         "right":["Back Camera","Night Mode","Slow Motion","Portrait Mode",
                  "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool"]
+    },
+    {
+        "title": "Utilities",
+        "left": ["System Monitor","Storage Manager","CPU Info","App Manager",
+                 "File Manager","QR Scanner","Notes","Clock/Timer"],
+        "right":["Battery Health","Phone Cleaner","GPU Info","RAM Booster",
+                 "Clipboard History","Barcode Reader","Calculator","Alarm Tools"]
+    },
+    {
+        "title": "Network Tools",
+        "left": ["WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner",
+                 "Ping Test","ARP Checker","VPN Status","Router Info"],
+        "right":["Signal Strength","MAC Viewer","Speed Test","Network Scanner",
+                 "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs"]
     }
 ]
 
 # ---------- BOX SETUP ----------
-box_width = 28
+box_width = 25
 space = 3
-total_width = box_width*2 + space + 1  # +1 for middle │
-top = "▒" * (total_width + 2)
+total = box_width*2 + space + 1   # +1 for middle │
 
-# Center top border
-print(diagonal(top.center(term_width)))
+top = "▒" * (total + 2)
+print(BOLD + G + top + RS)
 
 # ---------- RENDER SECTIONS ----------
 number = 1
 for sec in sections:
     # Section title
-    title = f"▒{sec['title'].center(total_width)}▒"
-    print(diagonal(title.center(term_width)))
+    title = f"▒{sec['title'].center(total)}▒"
+    print(BOLD + Y + title + RS)
 
-    # Top line
-    print(diagonal(("▒" + "─"*total_width + "▒").center(term_width)))
+    # Top line inside section
+    print(BOLD + G + "▒" + "─"*total + "▒" + RS)
 
     # Menu items
     for i in range(8):
@@ -174,27 +180,27 @@ for sec in sections:
         number += 1
         right_item = f"[{number}] {sec['right'][i]}".ljust(box_width)
         number += 1
-        line = f"▒{diagonal(left_item, i)}│{diagonal(right_item, i)}▒"
-        type_print(line.center(term_width), delay=0.004)
+        line = f"▒{BOLD}{left_item}│{right_item}{RS}▒"
+        type_print(line, delay=0.004)
 
     # Bottom line
-    print(diagonal(("▒" + "─"*total_width + "▒").center(term_width)))
+    print(BOLD + G + "▒" + "─"*total + "▒" + RS)
 
-    # Shadow separator
+    # Shadow (except last)
     if sec != sections[-1]:
-        print(diagonal(("▒" + "░"*total_width + "▒").center(term_width)))
+        print(BOLD + G + "▒" + "░"*total + "▒" + RS)
 
-# Bottom border
-print(diagonal(top.center(term_width)))
+# ---------- FINAL BOTTOM ----------
+print(BOLD + G + top + RS)
 
 # ---------- USER INPUT ----------
-choice = input(diagonal("\n[?] Select an option (number): ").center(term_width))
+choice = input(BOLD + Y + "\n[?] Select an option (number): " + RS)
 
 # Map number to item
 all_items = []
 count = 1
 for sec in sections:
-    for l,r in zip(sec['left'], sec['right']):
+    for l, r in zip(sec['left'], sec['right']):
         all_items.append((count, l))
         count += 1
         all_items.append((count, r))
@@ -207,9 +213,9 @@ for num, item in all_items:
         break
 
 if selected_item:
-    type_print(diagonal(f"\n[✓] You selected: {selected_item}\n").center(term_width), delay=0.01)
+    type_print(BOLD + G + f"\n[✓] You selected: {selected_item}\n" + RS, delay=0.01)
 else:
-    type_print(diagonal("\n[✗] Invalid selection!\n").center(term_width), delay=0.01) 
+    type_print(BOLD + R + "\n[✗] Invalid selection!\n" + RS, delay=0.01) 
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
