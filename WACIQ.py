@@ -149,11 +149,16 @@ box_width = 20
 space_between = 4
 total_width = box_width*2 + space_between
 
-# ----------- PRINT TOP BORDER -----------
+#----------- BOX DIMENSIONS -----------
+box_width = 20
+space_between = 4
+total_width = box_width*2 + space_between
+
+#----------- PRINT TOP BORDER -----------
 top_border = "▒" * (total_width + 2)
 print(tri(top_border))
 
-# ----------- PRINT SECTIONS -----------
+#----------- PRINT SECTIONS -----------
 for sec in sections:
 
     # Section top line
@@ -174,12 +179,11 @@ for sec in sections:
     bottom_line = "─" * (total_width + 2)
     print(tri(bottom_line))
 
-    # Shadow/Separator
-    if sec == sections[0]:
-        shadow_line = "─" + "░"*total_width + "▒"
-        print(tri(shadow_line))
+    # Shadow/Separator for each section
+    shadow_line = "─" + "░"*total_width + "▒"
+    print(tri(shadow_line))
 
-# ----------- PRINT BOTTOM BORDER -----------
+#----------- PRINT BOTTOM BORDER -----------
 print(tri(top_border)) 
 
 # ----------- USER INPUT -----------
