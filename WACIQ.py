@@ -93,29 +93,98 @@ import os, sys, time
 
 os.system("clear")
 
----------- COLORS ----------
+#---------- COLORS ----------
 
-R = "\033[1;31m" Y = "\033[1;33m" G = "\033[1;32m" RS = "\033[0m"
+R = "\033[1;31m"
+Y = "\033[1;33m"
+G = "\033[1;32m"
+RS = "\033[0m"
 
----------- GRADIENT ----------
+#---------- GRADIENT ----------
 
-def tri(text): out = "" L = len(text) for i, ch in enumerate(text): p = i / L if p < 0.33: out += R + ch elif p < 0.66: out += Y + ch else: out += G + ch return out + RS
+def tri(text):
+out = ""
+L = len(text)
+for i, ch in enumerate(text):
+p = i / L
+if p < 0.33: out += R + ch
+elif p < 0.66: out += Y + ch
+else: out += G + ch
+return out + RS
 
----------- TYPING EFFECT ----------
+#---------- TYPING EFFECT ----------
 
-def type_print(text, delay=0.008): for ch in text: sys.stdout.write(ch) sys.stdout.flush() time.sleep(delay) print()
+def type_print(text, delay=0.008):
+for ch in text:
+sys.stdout.write(ch)
+sys.stdout.flush()
+time.sleep(delay)
+print()
 
----------- LOGO ----------
+#---------- LOGO ----------
 
-logo = """ ██╗    ██╗ █████╗  ██████╗██╗ ██████╗ ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗ ██║ █╗ ██║███████║██║     ██║██║   ██║ ██║███╗██║██╔══██║██║     ██║██║   ██║ ╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝ ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ """
+logo = """
+██╗    ██╗ █████╗  ██████╗██╗ ██████╗
+██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
+██║ █╗ ██║███████║██║     ██║██║   ██║
+██║███╗██║██╔══██║██║     ██║██║   ██║
+╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
+╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝
+"""
 
-print(tri(logo)) time.sleep(0.2)
+print(tri(logo))
+time.sleep(0.2)
 
----------- SECTIONS ----------
+#---------- SECTIONS ----------
 
-sections = [ { "title": "Social Media", "left": [ "Facebook","WhatsApp","TikTok","YouTube", "Messenger","LinkedIn","Viber","Likee" ], "right": [ "Instagram","Snapchat","Reddit","Twitter/X", "Pinterest","Tumblr","Discord","Telegram" ] }, { "title": "Camera Tools", "left": [ "Front Camera","Flash Test","HD Recorder","Panorama", "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder" ], "right": [ "Back Camera","Night Mode","Slow Motion","Portrait Mode", "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool" ] }, { "title": "Utilities", "left": [ "System Monitor","Storage Manager","CPU Info","App Manager", "File Manager","QR Scanner","Notes","Clock/Timer" ], "right": [ "Battery Health","Phone Cleaner","GPU Info","RAM Booster", "Clipboard History","Barcode Reader","Calculator","Alarm Tools" ] }, { "title": "Network Tools", "left": [ "WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner", "Ping Test","ARP Checker","VPN Status","Router Info" ], "right": [ "Signal Strength","MAC Viewer","Speed Test","Network Scanner", "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs" ] }, ]
-
----------- BOX SETUP ----------
+sections = [
+{
+"title": "Social Media",
+"left": [
+"Facebook","WhatsApp","TikTok","YouTube",
+"Messenger","LinkedIn","Viber","Likee"
+],
+"right": [
+"Instagram","Snapchat","Reddit","Twitter/X",
+"Pinterest","Tumblr","Discord","Telegram"
+]
+},
+{
+"title": "Camera Tools",
+"left": [
+"Front Camera","Flash Test","HD Recorder","Panorama",
+"Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder"
+],
+"right": [
+"Back Camera","Night Mode","Slow Motion","Portrait Mode",
+"Photo Editor","Filter Lab","Stabilizer","Screenshot Tool"
+]
+},
+{
+"title": "Utilities",
+"left": [
+"System Monitor","Storage Manager","CPU Info","App Manager",
+"File Manager","QR Scanner","Notes","Clock/Timer"
+],
+"right": [
+"Battery Health","Phone Cleaner","GPU Info","RAM Booster",
+"Clipboard History","Barcode Reader","Calculator","Alarm Tools"
+]
+},
+{
+"title": "Network Tools",
+"left": [
+"WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner",
+"Ping Test","ARP Checker","VPN Status","Router Info"
+],
+"right": [
+"Signal Strength","MAC Viewer","Speed Test","Network Scanner",
+"DNS Lookup","Packet Sniffer","Firewall Status","Network Logs"
+]
+},
+]
+ 
+#---------- BOX SETUP ----------
 box_width = 30
 top = "▒" * (box_width + 4)
 print(tri(top))
