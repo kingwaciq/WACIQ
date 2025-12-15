@@ -91,22 +91,21 @@ for ua in range(10000):
 	ugen.append(alhhaj)
 import os, sys, time
 
-# ---------- CLEAR ----------
-def clear():
-    os.system("clear")
+os.system("clear")
 
-# ---------- COLORS ----------
+# ================= COLORS =================
 R = "\033[1;31m"
 Y = "\033[1;33m"
 G = "\033[1;32m"
+C = "\033[1;36m"
 RS = "\033[0m"
 
-# ---------- GRADIENT ----------
+# ================= GRADIENT =================
 def tri(text):
     out = ""
     L = len(text)
     for i, ch in enumerate(text):
-        p = i / max(L-1, 1)
+        p = i / L
         if p < 0.33:
             out += R + ch
         elif p < 0.66:
@@ -115,83 +114,105 @@ def tri(text):
             out += G + ch
     return out + RS
 
-# ---------- TYPE EFFECT ----------
-def type_print(text, delay=0.004):
+# ================= TYPE EFFECT =================
+def type_print(text, delay=0.006):
     for ch in text:
         sys.stdout.write(ch)
         sys.stdout.flush()
         time.sleep(delay)
     print()
 
-# ---------- LOGO ----------
+# ================= WACIQ LOGO =================
 logo = """
-██╗    ██╗ █████╗ ███████╗██╗ ██████╗
+█╗    ██╗ █████╗  ██████╗██╗ ██████╗
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
-██║ █╗ ██║███████║███████╗██║██║   ██║
-██║███╗██║██╔══██║╚════██║██║██║   ██║
-╚███╔███╔╝██║  ██║███████║██║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝
+██║ █╗ ██║███████║██║     ██║██║   ██║
+██║███╗██║██╔══██║██║     ██║██║   ██║
+╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
+ ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝
 """
 
-# ---------- DATA ----------
+# ================= MASK LOGO =================
+mask_logo = [
+"      ██████████████████      ",
+"   ██████  ██████  ██████   ",
+" ██████    ██████    ██████ ",
+" ██████    ██████    ██████ ",
+" ██████  ██████████  ██████ ",
+" ██████    ██████    ██████ ",
+" ██████    ██████    ██████ ",
+"   ██████            ██████ ",
+"      ██████████████████      "
+]
+
+def draw_mask():
+    os.system("clear")
+    for line in mask_logo:
+        print(R + line + RS)
+        time.sleep(0.15)
+    time.sleep(0.8)
+
+# ================= SECTIONS =================
 sections = {
     "social": {
         "title": "Social Media",
         "items": [
-            "Facebook","Instagram","YouTube","Telegram",
-            "WhatsApp","TikTok","Messenger","Snapchat"
+            "Facebook", "Instagram", "WhatsApp", "Telegram",
+            "YouTube", "TikTok", "Snapchat", "Twitter/X"
         ]
     },
     "camera": {
         "title": "Camera Tools",
         "items": [
-            "Front Camera","Back Camera","Flash Test","Night Mode",
-            "Video Recorder","Slow Motion","Screenshot","Gallery"
+            "Front Camera", "Back Camera", "Night Mode", "Portrait Mode",
+            "Video Recorder", "Slow Motion", "Panorama", "Beauty Camera"
         ]
     },
     "utilities": {
         "title": "Utilities",
         "items": [
-            "System Monitor","File Manager","Storage Manager","QR Scanner",
-            "Calculator","Notes","Clock","Battery Health"
+            "File Manager", "System Monitor", "App Manager", "QR Scanner",
+            "Calculator", "Notes", "Battery Health", "Phone Cleaner"
         ]
     },
     "network": {
         "title": "Network Tools",
         "items": [
-            "WiFi Analyzer","Speed Test","IP Lookup","Ping Test",
-            "DNS Lookup","Network Scanner","MAC Viewer","Firewall"
+            "WiFi Analyzer", "Speed Test", "IP Lookup", "VPN Status",
+            "Hotspot Manager", "DNS Lookup", "Port Scanner", "Firewall Info"
         ]
     }
 }
 
-# ---------- DRAW ALL SECTIONS ----------
-def draw_sections(keys):
-    for key in keys:
-        sec = sections[key]
-        type_print(tri(f"\n▒▒▒ {sec['title']} ▒▒▒"))
-        for item in sec["items"]:
-            type_print(tri(f"  ➤ {item}"))
+# ================= SHOW ALL SECTIONS =================
+print(tri(logo))
+print(C + "Select a section by typing its name:\n" + RS)
 
-# ---------- MAIN ----------
-while True:
-    clear()
-    print(tri(logo))
+for key, sec in sections.items():
+    print(tri(f"▒▒ {sec['title']} ({key}) ▒▒"))
+    for item in sec["items"]:
+        print(tri(f"  ➤ {item}"))
+    print()
 
-    # SHOW ALL SECTIONS FIRST
-    draw_sections(sections.keys())
+# ================= USER INPUT =================
+choice = input(tri("[?] Enter section name: ")).strip().lower()
 
-    # SECTION SELECTION
-    choice = input(tri("\n[?] Select section (social/camera/utilities/network): ")).lower()
+if choice not in sections:
+    print(R + "\n[!] Invalid section selected\n" + RS)
+    sys.exit()
 
-    if choice in sections:
-        clear()
-        print(tri(logo))
-        draw_sections([choice])
-        input(tri("\n[ Enter to go back ]"))
-    else:
-        type_print(tri("\n[✗] Invalid section"))
-        time.sleep(1)
+# ================= MASK INTRO =================
+draw_mask()
+
+# ================= SHOW SELECTED SECTION =================
+os.system("clear")
+print(tri(logo))
+print(tri(f"\n▒▒▒ {sections[choice]['title']} ▒▒▒\n"))
+
+for item in sections[choice]["items"]:
+    type_print(tri(f"  ➤ {item}"), 0.01)
+
+print(tri("\n[✓] Section Loaded Successfully\n"))
 print("\033[1;31m     â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\033[1;32m BCS \033[1;31mâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“") 
 print("\033[1;31m     â”ƒ \033[1;35mâ£ï¸Žâ˜”ï¸Ž \033[1;36mð™‰ð˜¼ð™ˆð™€         \033[1;31m: \033[1;33m[â˜…] JABER\033[1;31m                â”ƒ")
 print("\033[1;31m     â”ƒ \033[1;35mâ£ï¸Žâ˜”ï¸Ž \033[1;36mð™ð™Šð™Šð™‡ ð™‰ð˜¼ð™ˆð™€   \033[1;31m: \033[1;33m[â˜…] R4NDOM-CLONING\033[1;31m       â”ƒ")
