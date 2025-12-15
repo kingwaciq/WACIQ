@@ -94,70 +94,27 @@ import os, sys, time
 os.system("clear")
 
 # ---------- COLORS ----------
-R = "\033[1;31m"  # Red
-Y = "\033[1;33m"  # Yellow
-G = "\033[1;32m"  # Green
-RS = "\033[0m"     # Reset
-BOLD = "\033[1m"
-
-# ---------- DIAGONAL GRADIENT ----------
-def diagonal(text, offset=0):
-    out = ""
-    colors = [R, Y, G]
-    for i, ch in enumerate(text):
-        out += colors[(i+offset) % 3] + BOLD + ch
-    return out + RS
-
-# ---------- TYPING EFFECT ----------
-def type_print(text, delay=0.008):
-    for ch in text:
-        sys.stdout.write(ch)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print()
-
-# ---------- LOGO ----------
-logo = """
-██╗    ██╗ █████╗  ██████╗██╗ ██████╗ 
-██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
-██║ █╗ ██║███████║██║     ██║██║   ██║
-██║███╗██║██╔══██║██║     ██║██║   ██║
-╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ 
-"""
-term_width = 80
-for line in logo.splitlines():
-    print(diagonal(line.center(term_width)))
-
-time.sleep(0.2)
-
-# ---------- MENU DATA ----------
-sections = [
-    {
-        "title": "Social Media",
-        "left": ["Facebook","WhatsApp","TikTok","YouTube",
-                 "Messenger","LinkedIn","Viber","Likee"],
-        "right":["Instagram","Snapchat","Reddit","Twitter/X",
-                 "Pinterest","Tumblr","Discord","Telegram"]
-    },
-    {
-        "title": "Camera Tools",
-        "left": ["Front Camera","Flash Test","HD Recorder","Panorama",
-                 "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder"],
-        "right":["Back Camera","Night Mode","Slow Motion","Portrait Mode",
-import os, sys, time
-
-os.system("clear")
-
-# ---------- COLORS ----------
 R = "\033[1;31m"
 Y = "\033[1;33m"
 G = "\033[1;32m"
 RS = "\033[0m"
-BOLD = "\033[1m"
+
+# ---------- GRADIENT ----------
+def tri(text):
+    out = ""
+    L = len(text)
+    for i, ch in enumerate(text):
+        p = i / max(L-1, 1)
+        if p < 0.33:
+            out += R + ch
+        elif p < 0.66:
+            out += Y + ch
+        else:
+            out += G + ch
+    return out + RS
 
 # ---------- TYPING EFFECT ----------
-def type_print(text, delay=0.008):
+def type_print(text, delay=0.006):
     for ch in text:
         sys.stdout.write(ch)
         sys.stdout.flush()
@@ -166,113 +123,114 @@ def type_print(text, delay=0.008):
 
 # ---------- LOGO ----------
 logo = """
-██╗    ██╗ █████╗  ██████╗██╗ ██████╗ 
+██╗    ██╗ █████╗  ██████╗██╗ ██████╗
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
 ██║ █╗ ██║███████║██║     ██║██║   ██║
 ██║███╗██║██╔══██║██║     ██║██║   ██║
 ╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ 
+ ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝
 """
-print(BOLD + R + logo + RS)
-
-# ---------- SMALL ASCII NAME BELOW LOGO ----------
-ascii_name = " WACIQ SYSTEM "
-print(BOLD + Y + ascii_name.center(80) + RS + "\n")
+print(tri(logo))
 time.sleep(0.2)
 
 # ---------- SECTIONS ----------
 sections = [
     {
         "title": "Social Media",
-        "left": ["Facebook","WhatsApp","TikTok","YouTube",
-                 "Messenger","LinkedIn","Viber","Likee"],
-        "right":["Instagram","Snapchat","Reddit","Twitter/X",
-                 "Pinterest","Tumblr","Discord","Telegram"]
+        "left": [
+            "Facebook","WhatsApp","TikTok","YouTube",
+            "Messenger","LinkedIn","Viber","Likee"
+        ],
+        "right": [
+            "Instagram","Snapchat","Reddit","Twitter/X",
+            "Pinterest","Tumblr","Discord","Telegram"
+        ]
     },
     {
         "title": "Camera Tools",
-        "left": ["Front Camera","Flash Test","HD Recorder","Panorama",
-                 "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder"],
-        "right":["Back Camera","Night Mode","Slow Motion","Portrait Mode",
-                 "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool"]
+        "left": [
+            "Front Camera","Flash Test","HD Recorder","Panorama",
+            "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder"
+        ],
+        "right": [
+            "Back Camera","Night Mode","Slow Motion","Portrait Mode",
+            "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool"
+        ]
     },
     {
         "title": "Utilities",
-        "left": ["System Monitor","Storage Manager","CPU Info","App Manager",
-                 "File Manager","QR Scanner","Notes","Clock/Timer"],
-        "right":["Battery Health","Phone Cleaner","GPU Info","RAM Booster",
-                 "Clipboard History","Barcode Reader","Calculator","Alarm Tools"]
+        "left": [
+            "System Monitor","Storage Manager","CPU Info","App Manager",
+            "File Manager","QR Scanner","Notes","Clock/Timer"
+        ],
+        "right": [
+            "Battery Health","Phone Cleaner","GPU Info","RAM Booster",
+            "Clipboard History","Barcode Reader","Calculator","Alarm Tools"
+        ]
     },
     {
         "title": "Network Tools",
-        "left": ["WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner",
-                 "Ping Test","ARP Checker","VPN Status","Router Info"],
-        "right":["Signal Strength","MAC Viewer","Speed Test","Network Scanner",
-                 "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs"]
+        "left": [
+            "WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner",
+            "Ping Test","ARP Checker","VPN Status","Router Info"
+        ],
+        "right": [
+            "Signal Strength","MAC Viewer","Speed Test","Network Scanner",
+            "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs"
+        ]
     }
 ]
 
 # ---------- BOX SETUP ----------
-box_width = 25
+box_width = 28
 space = 3
-total = box_width*2 + space + 1   # +1 for middle │
+total = box_width * 2 + space + 1
+
+# ---------- COLLECT ALL ITEMS ----------
+all_items = []
+counter = 1
 
 top = "▒" * (total + 2)
-print(BOLD + G + top + RS)
+print(tri(top))
 
-# ---------- RENDER SECTIONS ----------
-number = 1
+# ---------- RENDER ----------
 for sec in sections:
-    # Section title
-    title = f"▒{sec['title'].center(total)}▒"
-    print(BOLD + Y + title + RS)
+    print(tri(f"▒{sec['title'].center(total)}▒"))
+    print(tri("▒" + "─" * total + "▒"))
 
-import os, sys, time
+    for i in range(8):
+        left_text = f"〔{counter}〕 {sec['left'][i]}"
+        all_items.append(sec['left'][i])
+        counter += 1
 
-os.system("clear")
+        right_text = f"〔{counter}〕 {sec['right'][i]}"
+        all_items.append(sec['right'][i])
+        counter += 1
 
----------- COLORS ----------
+        L = left_text.ljust(box_width)
+        Rg = right_text.ljust(box_width)
 
-R = "\033[1;31m" Y = "\033[1;33m" G = "\033[1;32m" RS = "\033[0m"
+        line = f"▒{L}│{Rg}▒"
+        type_print(tri(line), delay=0.004)
 
----------- GRADIENT ----------
+    print(tri("▒" + "─" * total + "▒"))
 
-def tri(text): out = "" L = len(text) for i, ch in enumerate(text): p = i / L if p < 0.33: out += R + ch elif p < 0.66: out += Y + ch else: out += G + ch return out + RS
-
----------- TYPING EFFECT ----------
-
-def type_print(text, delay=0.008): for ch in text: sys.stdout.write(ch) sys.stdout.flush() time.sleep(delay) print()
-
----------- LOGO ----------
-
-logo = """ ██╗    ██╗ █████╗  ██████╗██╗ ██████╗ ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗ ██║ █╗ ██║███████║██║     ██║██║   ██║ ██║███╗██║██╔══██║██║     ██║██║   ██║ ╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝ ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ """
-
-print(tri(logo)) time.sleep(0.2)
-
----------- SECTIONS ----------
-
-sections = [ { "title": "Social Media", "left": [ "Facebook","WhatsApp","TikTok","YouTube", "Messenger","LinkedIn","Viber","Likee" ], "right": [ "Instagram","Snapchat","Reddit","Twitter/X", "Pinterest","Tumblr","Discord","Telegram" ] }, { "title": "Camera Tools", "left": [ "Front Camera","Flash Test","HD Recorder","Panorama", "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder" ], "right": [ "Back Camera","Night Mode","Slow Motion","Portrait Mode", "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool" ] }, { "title": "Utilities", "left": [ "System Monitor","Storage Manager","CPU Info","App Manager", "File Manager","QR Scanner","Notes","Clock/Timer" ], "right": [ "Battery Health","Phone Cleaner","GPU Info","RAM Booster", "Clipboard History","Barcode Reader","Calculator","Alarm Tools" ] }, { "title": "Network Tools", "left": [ "WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner", "Ping Test","ARP Checker","VPN Status","Router Info" ], "right": [ "Signal Strength","MAC Viewer","Speed Test","Network Scanner", "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs" ] }, ]
-
----------- BOX SETUP ----------
-
-box_width = 20 space = 3 total = box_width*2 + space + 1   # +1 for middle │
-
----------- TOP BORDER ----------
-
-top = "▒" * (total + 2) print(tri(top))
-
----------- RENDER SECTIONS ----------
-
-for sec in sections:
-# Title Bar   title = f"▒{sec['title'].center(total)}▒"   print(tri(title))    # Top line inside section   print(tri("▒" + "─"*total + "▒"))    # 8+8 Items   for i in range(8):       L = sec['left'][i].ljust(box_width)       Rg = sec['right'][i].ljust(box_width)       line = f"▒{L}│{Rg}▒"       type_print(tri(line), delay=0.004)    # Bottom line   print(tri("▒" + "─"*total + "▒"))    # Shadow (except last)   if sec != sections[-1]:       print(tri("▒" + "░"*total + "▒"))   
-
----------- FINAL BOTTOM ----------
+    if sec != sections[-1]:
+        print(tri("▒" + "░" * total + "▒"))
 
 print(tri(top))
 
----------- INPUT ----------
+# ---------- INPUT ----------
+choice = input(tri("\n[?] Select an option number: "))
 
-choice = input(tri("\n[?] Select an option: ")) type_print(tri(f"[✓] You selected: {choice}"), delay=0.01)   
+if choice.isdigit():
+    idx = int(choice)
+    if 1 <= idx <= len(all_items):
+        type_print(tri(f"[✓] You selected: {all_items[idx-1]}"), delay=0.01)
+    else:
+        type_print(tri("[✗] Invalid number"), delay=0.01)
+else:
+    type_print(tri("[✗] Numbers only"), delay=0.01)
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
