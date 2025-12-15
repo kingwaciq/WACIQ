@@ -94,10 +94,10 @@ import os, sys, time
 os.system("clear")
 
 # ---------- COLORS ----------
-R = "\033[1;31m"
-Y = "\033[1;33m"
-G = "\033[1;32m"
-RS = "\033[0m"
+R  = "\033[1;31m"   # Red
+Y  = "\033[1;33m"   # Yellow
+G  = "\033[1;32m"   # Green
+RS = "\033[0m"      # Reset
 
 # ---------- GRADIENT ----------
 def tri(text):
@@ -123,12 +123,12 @@ def type_print(text, delay=0.006):
 
 # ---------- LOGO ----------
 logo = """
-██╗    ██╗ █████╗  ██████╗██╗ ██████╗
+██╗    ██╗ █████╗ ███████╗██╗ ██████╗
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
-██║ █╗ ██║███████║██║     ██║██║   ██║
-██║███╗██║██╔══██║██║     ██║██║   ██║
-╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝
+██║ █╗ ██║███████║███████╗██║██║   ██║
+██║███╗██║██╔══██║╚════██║██║██║   ██║
+╚███╔███╔╝██║  ██║███████║██║╚██████╔╝
+ ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝
 """
 print(tri(logo))
 time.sleep(0.2)
@@ -186,51 +186,39 @@ box_width = 28
 space = 3
 total = box_width * 2 + space + 1
 
-# ---------- COLLECT ALL ITEMS ----------
-all_items = []
-counter = 1
-
+# ---------- TOP BORDER ----------
 top = "▒" * (total + 2)
 print(tri(top))
 
-# ---------- RENDER ----------
+# ---------- RENDER SECTIONS ----------
 for sec in sections:
+
+    # Title
     print(tri(f"▒{sec['title'].center(total)}▒"))
+
+    # Top line
     print(tri("▒" + "─" * total + "▒"))
 
+    # Items (8 + 8)
     for i in range(8):
-        left_text = f"〔{counter}〕 {sec['left'][i]}"
-        all_items.append(sec['left'][i])
-        counter += 1
-
-        right_text = f"〔{counter}〕 {sec['right'][i]}"
-        all_items.append(sec['right'][i])
-        counter += 1
-
-        L = left_text.ljust(box_width)
-        Rg = right_text.ljust(box_width)
-
+        L = sec['left'][i].ljust(box_width)
+        Rg = sec['right'][i].ljust(box_width)
         line = f"▒{L}│{Rg}▒"
         type_print(tri(line), delay=0.004)
 
+    # Bottom line
     print(tri("▒" + "─" * total + "▒"))
 
+    # Shadow separator
     if sec != sections[-1]:
         print(tri("▒" + "░" * total + "▒"))
 
+# ---------- FINAL BORDER ----------
 print(tri(top))
 
 # ---------- INPUT ----------
-choice = input(tri("\n[?] Select an option number: "))
-
-if choice.isdigit():
-    idx = int(choice)
-    if 1 <= idx <= len(all_items):
-        type_print(tri(f"[✓] You selected: {all_items[idx-1]}"), delay=0.01)
-    else:
-        type_print(tri("[✗] Invalid number"), delay=0.01)
-else:
-    type_print(tri("[✗] Numbers only"), delay=0.01)
+choice = input(tri("\n[?] Select an option: "))
+type_print(tri(f"[✓] You selected: {choice}"), delay=0.01) 
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
