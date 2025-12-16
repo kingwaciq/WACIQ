@@ -108,14 +108,14 @@ def type_print(text, delay=0.008):
         time.sleep(delay)
     print()
 
-# ---------- LOGOS ----------
+# ---------- SECTION LOGOS ----------
 logo_main = """
 ██╗    ██╗ █████╗  ██████╗██╗ ██████╗
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
 ██║ █╗ ██║███████║██║     ██║██║   ██║
 ██║███╗██║██╔══██║██║     ██║██║   ██║
 ╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝
+ ╚══╝╚══╝ ╚═╝  ╚═════╝╚═╝ ╚═════╝
 """
 
 logo_secondary = """
@@ -168,19 +168,30 @@ space = 3
 total = box_width * 2 + space + 1
 top = "▒" * (total + 2)
 
-# ---------- HELP FUNCTION ----------
-def tri_line(total):
-    return "▒" + "─" * total + "▒"
-
-# ---------- DISPLAY SECTION WITH ITEMS ----------
-def display_section(name, items, logo=logo_main):
+# ---------- DISPLAY ONLY SECTION TITLES ----------
+def display_section_titles():
     os.system("clear")
-    type_print(logo, delay=0.002)
+    type_print(logo_main, delay=0.002)
+    print()
+    for name, color in section_colors.items():
+        line = f"▒{color}{name.center(total)}{RS}▒"
+        type_print(line, delay=0.02)
+        print(tri_line(total))
+    print(top)
+
+# ---------- DISPLAY SELECTED SECTION WITH ITEMS ----------
+def display_selected_section(name, items):
+    os.system("clear")
+    # لوگو د دویم ډیزاین سره ټایپینګ
+    type_print(logo_secondary, delay=0.002)
+    print(tri_line(total))
     color = section_colors.get(name, M)
     
+    # عنوان
     type_print(f"▒{color}{name.center(total)}{RS}▒", delay=0.01)
     print(tri_line(total))
     
+    # ایټمونه په دوه ستنو
     for i in range(8):
         left = f"{M}{items[i].ljust(box_width)}{RS}"
         right = f"{C}{items[i+8].ljust(box_width)}{RS}"
@@ -189,40 +200,22 @@ def display_section(name, items, logo=logo_main):
     print(tri_line(total))
     print(top)
 
-# ---------- MAIN MENU ----------
-def main_menu():
-    while True:
-        os.system("clear")
-        type_print(logo_main, delay=0.002)
-        print(tri_line(total))
-        # ښودل د ټول سیکشنونو ایټمونه
-        for name, items in sections.items():
-            color = section_colors.get(name, R)
-            type_print(f"▒{color}{name.center(total)}{RS}▒", delay=0.01)
-            for i in range(8):
-                left = f"{M}{items[i].ljust(box_width)}{RS}"
-                right = f"{C}{items[i+8].ljust(box_width)}{RS}"
-                line = f"▒{left}│{right}▒"
-                type_print(line, delay=0.004)
-            print(tri_line(total))
-        print(top)
-        
-        choice = input(tri("\n[?] Select a section (or 'exit' to quit): ")).strip().lower()
-        if choice == "exit":
-            break
-        
-        # پیدا کول او نمایش کول
-        for name in sections.keys():
-            if name.lower().startswith(choice):
-                display_section(name, sections[name], logo_secondary)
-                input(tri("\nPress Enter to go back to main menu..."))
-                break
-        else:
-            type_print(tri("[✗] Invalid selection!"))
-            time.sleep(1)
+# ---------- HELP FUNCTION ----------
+def tri_line(total):
+    return "▒" + "─" * total + "▒"
 
-# ---------- RUN ----------
-main_menu() 
+# ---------- MAIN ----------
+display_section_titles()
+choice = input("\n[?] Select a section: ").strip().lower()
+
+# پیدا کول او نمایش کول
+for name in sections.keys():
+    if name.lower().startswith(choice):
+        display_selected_section(name, sections[name])
+        type_print(f"[✓] You selected: {name}", delay=0.01)
+        break
+else:
+    type_print("[✗] Invalid selection!") 
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
