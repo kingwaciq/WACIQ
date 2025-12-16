@@ -91,20 +91,21 @@ for ua in range(10000):
 	ugen.append(alhhaj)
 import os, sys, time
 
-os.system("clear")
+# ================= COLORS =================
+R = "\033[1;31m"
+Y = "\033[1;33m"
+G = "\033[1;32m"
+C = "\033[1;36m"
+M = "\033[1;35m"
+B = "\033[1;34m"
+RS = "\033[0m"
 
-# ---------- COLORS ----------
-R  = "\033[1;31m"   # Red
-Y  = "\033[1;33m"   # Yellow
-G  = "\033[1;32m"   # Green
-RS = "\033[0m"      # Reset
-
-# ---------- GRADIENT ----------
+# ================= GRADIENT =================
 def tri(text):
     out = ""
     L = len(text)
     for i, ch in enumerate(text):
-        p = i / max(L-1, 1)
+        p = i / max(L-1,1)
         if p < 0.33:
             out += R + ch
         elif p < 0.66:
@@ -113,7 +114,7 @@ def tri(text):
             out += G + ch
     return out + RS
 
-# ---------- TYPING EFFECT ----------
+# ================= TYPE EFFECT =================
 def type_print(text, delay=0.006):
     for ch in text:
         sys.stdout.write(ch)
@@ -121,104 +122,123 @@ def type_print(text, delay=0.006):
         time.sleep(delay)
     print()
 
-# ---------- LOGO ----------
-logo = """
-██╗    ██╗ █████╗ ███████╗██╗ ██████╗
+# ================= LOGOS =================
+logo_main = """
+██╗    ██╗ █████╗  ██████╗██╗ ██████╗
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
-██║ █╗ ██║███████║███████╗██║██║   ██║
-██║███╗██║██╔══██║╚════██║██║██║   ██║
-╚███╔███╔╝██║  ██║███████║██║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝
+██║ █╗ ██║███████║██║     ██║██║   ██║
+██║███╗██║██╔══██║██║     ██║██║   ██║
+╚███╔███╔╝██║  ██║╚██████╗██║╚██████╔╝
+ ╚══╝╚══╝ ╚═╝  ╚═════╝╚═╝ ╚═════╝
 """
-print(tri(logo))
-time.sleep(0.2)
 
-# ---------- SECTIONS ----------
-sections = [
-    {
-        "title": "Social Media",
-        "left": [
-            "Facebook","WhatsApp","TikTok","YouTube",
-            "Messenger","LinkedIn","Viber","Likee"
-        ],
-        "right": [
-            "Instagram","Snapchat","Reddit","Twitter/X",
-            "Pinterest","Tumblr","Discord","Telegram"
-        ]
-    },
-    {
-        "title": "Camera Tools",
-        "left": [
-            "Front Camera","Flash Test","HD Recorder","Panorama",
-            "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder"
-        ],
-        "right": [
-            "Back Camera","Night Mode","Slow Motion","Portrait Mode",
-            "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool"
-        ]
-    },
-    {
-        "title": "Utilities",
-        "left": [
-            "System Monitor","Storage Manager","CPU Info","App Manager",
-            "File Manager","QR Scanner","Notes","Clock/Timer"
-        ],
-        "right": [
-            "Battery Health","Phone Cleaner","GPU Info","RAM Booster",
-            "Clipboard History","Barcode Reader","Calculator","Alarm Tools"
-        ]
-    },
-    {
-        "title": "Network Tools",
-        "left": [
-            "WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner",
-            "Ping Test","ARP Checker","VPN Status","Router Info"
-        ],
-        "right": [
-            "Signal Strength","MAC Viewer","Speed Test","Network Scanner",
-            "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs"
-        ]
-    }
-]
+logo_secondary = """
+ ██████╗ ██████╗ ███╗   ███╗███████╗
+██╔════╝██╔═══██╗████╗ ████║██╔════╝
+██║     ██║   ██║██╔████╔██║█████╗  
+██║     ██║   ██║██║╚██╔╝██║██╔══╝  
+╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗
+ ╚═════╝╚═════╝ ╚═╝     ╚═╝╚══════╝
+"""
 
-# ---------- BOX SETUP ----------
+ascii_message = r"""
+__        __   _                            _    _ _       _ 
+\ \      / /__| | ___ ___  _ __ ___   ___  | |  | (_) __ _| |
+ \ \ /\ / / _ \ |/ __/ _ \| '_ ` _ \ / _ \ | |  | | |/ _` | |
+  \ V  V /  __/ | (_| (_) | | | | | |  __/ | |__| | | (_| | |
+   \_/\_/ \___|_|\___\___/|_| |_| |_|\___|  \____/|_|\__,_|_|
+"""
+# ================= SECTIONS AND ITEMS =================
+sections = {
+    "Social Media": [
+        "Facebook","WhatsApp","TikTok","YouTube",
+        "Messenger","LinkedIn","Viber","Likee",
+        "Instagram","Snapchat","Reddit","Twitter/X",
+        "Pinterest","Tumblr","Discord","Telegram"
+    ],
+    "Camera Tools": [
+        "Front Camera","Flash Test","HD Recorder","Panorama",
+        "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder",
+        "Back Camera","Night Mode","Slow Motion","Portrait Mode",
+        "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool"
+    ],
+    "Utilities": [
+        "System Monitor","Storage Manager","CPU Info","App Manager",
+        "File Manager","QR Scanner","Notes","Clock/Timer",
+        "Battery Health","Phone Cleaner","GPU Info","RAM Booster",
+        "Clipboard History","Barcode Reader","Calculator","Alarm Tools"
+    ],
+    "Network Tools": [
+        "WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner",
+        "Ping Test","ARP Checker","VPN Status","Router Info",
+        "Signal Strength","MAC Viewer","Speed Test","Network Scanner",
+        "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs"
+    ]
+}
+
+# ================= BOX SETUP =================
 box_width = 28
-space = 3
-total = box_width * 2 + space + 1
+total = box_width*2 + 3 + 1
+top = "▒" * (total+2)
 
-# ---------- TOP BORDER ----------
-top = "▒" * (total + 2)
-print(tri(top))
+def tri_line(total):
+    return "▒" + "─"*total + "▒"
 
-# ---------- RENDER SECTIONS ----------
-for sec in sections:
+# ================= DISPLAY ALL SECTIONS (FIRST TIME) =================
+def display_all_sections():
+    os.system("clear")
+    type_print(tri(logo_main), delay=0.002)  # gradient لوگو
+    print()
+    for name, items in sections.items():
+        # د عنوان پورته ساده ▒ لین
+        type_print(tri("▒"), delay=0.01)
+        # gradient سیکشن header
+        type_print(tri(f"▒ {name.center(total-2)} ▒"), delay=0.01)
+        # لاندې ساده ▒ لین
+        type_print(tri("▒"), delay=0.01)
+        # دوه ستنه ایټمونه gradient
+        for i in range(8):
+            left = items[i].ljust(box_width)
+            right = items[i+8].ljust(box_width)
+            line = f"▒{left}│{right}▒"
+            type_print(tri(line), delay=0.004)
+        # د بکس پای
+        print(tri("▒" + "─" * total + "▒"))
+    print(top) 
+# ================= DISPLAY ASCII MESSAGE BEFORE SECTION =================
+def display_ascii_message():
+    os.system("clear")
+    for line in ascii_message.splitlines():
+        type_print(f"{C}{line.center(total)}{RS}", delay=0.01)
+    time.sleep(1.5)
+    os.system("clear")
 
-    # Title
-    print(tri(f"▒{sec['title'].center(total)}▒"))
-
-    # Top line
-    print(tri("▒" + "─" * total + "▒"))
-
-    # Items (8 + 8)
+# ================= DISPLAY SELECTED SECTION =================
+def display_selected_section(name, items):
+    type_print(logo_secondary, delay=0.002)
+    print(tri_line(total))
+    type_print(f"▒{B}{name.center(total)}{RS}▒", delay=0.01)
+    print(tri_line(total))
     for i in range(8):
-        L = sec['left'][i].ljust(box_width)
-        Rg = sec['right'][i].ljust(box_width)
-        line = f"▒{L}│{Rg}▒"
-        type_print(tri(line), delay=0.004)
+        left = f"{M}{items[i].ljust(box_width)}{RS}"
+        right = f"{C}{items[i+8].ljust(box_width)}{RS}"
+        line = f"▒{left}│{right}▒"
+        type_print(line, delay=0.004)
+    print(tri_line(total))
+    print(top)
 
-    # Bottom line
-    print(tri("▒" + "─" * total + "▒"))
+# ================= MAIN =================
+display_all_sections()
+choice = input("\n[?] Select a section: ").strip().lower()
 
-    # Shadow separator
-    if sec != sections[-1]:
-        print(tri("▒" + "░" * total + "▒"))
-
-# ---------- FINAL BORDER ----------
-print(tri(top))
-
-# ---------- INPUT ----------
-choice = input(tri("\n[?] Select an option: "))
-type_print(tri(f"[✓] You selected: {choice}"), delay=0.01) 
+for name in sections.keys():
+    if name.lower().startswith(choice):
+        display_ascii_message()  # fancy ASCII مخکې له سیکشن
+        display_selected_section(name, sections[name])
+        type_print(f"[✓] You selected: {name}", delay=0.01)
+        break
+else:
+    type_print("[✗] Invalid selection!") 
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
