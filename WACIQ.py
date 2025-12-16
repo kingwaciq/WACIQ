@@ -91,24 +91,38 @@ for ua in range(10000):
 	ugen.append(alhhaj)
 import os, sys, time
 
-# ---------- COLORS ----------
-R  = "\033[1;31m"   # Red
-Y  = "\033[1;33m"   # Yellow
-G  = "\033[1;32m"   # Green
-B  = "\033[1;34m"   # Blue
-M  = "\033[1;35m"   # Magenta
-C  = "\033[1;36m"   # Cyan
-RS = "\033[0m"      # Reset
+# ================= COLORS =================
+R = "\033[1;31m"
+Y = "\033[1;33m"
+G = "\033[1;32m"
+C = "\033[1;36m"
+M = "\033[1;35m"
+B = "\033[1;34m"
+RS = "\033[0m"
 
-# ---------- TYPING EFFECT ----------
-def type_print(text, delay=0.008):
+# ================= GRADIENT =================
+def tri(text):
+    out = ""
+    L = len(text)
+    for i, ch in enumerate(text):
+        p = i / L
+        if p < 0.33:
+            out += R + ch
+        elif p < 0.66:
+            out += Y + ch
+        else:
+            out += G + ch
+    return out + RS
+
+# ================= TYPE EFFECT =================
+def type_print(text, delay=0.006):
     for ch in text:
         sys.stdout.write(ch)
         sys.stdout.flush()
         time.sleep(delay)
     print()
 
-# ---------- LOGOS ----------
+# ================= LOGOS =================
 logo_main = """
 ██╗    ██╗ █████╗  ██████╗██╗ ██████╗
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
@@ -119,15 +133,21 @@ logo_main = """
 """
 
 logo_secondary = """
- ██████╗ ██████╗ ███╗   ███╗███████╗
-██╔════╝██╔═══██╗████╗ ████║██╔════╝
-██║     ██║   ██║██╔████╔██║█████╗  
-██║     ██║   ██║██║╚██╔╝██║██╔══╝  
-╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗
- ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
+ ██╗    ██╗ █████╗ ███████╗██╗ ██████╗
+██║    ██║██╔══██╗██╔════╝██║██╔═══██╗
+██║ █╗ ██║███████║███████╗██║██║   ██║
+██║███╗██║██╔══██║╚════██║██║██║   ██║
+╚███╔███╔╝██║  ██║███████║██║╚██████╔╝
+ ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ 
 """
 
-# ---------- SECTIONS AND ITEMS ----------
+# ================= ASCII MESSAGE =================
+ascii_message = """
+you know about me
+WASIQ KING the legend of AFG
+"""
+
+# ================= SECTIONS AND ITEMS =================
 sections = {
     "Social Media": [
         "Facebook","WhatsApp","TikTok","YouTube",
@@ -155,47 +175,44 @@ sections = {
     ]
 }
 
-# لومړی رنګ سکیم
-initial_colors = [R, Y, G, B]
-
-# ---------- BOX SETUP ----------
+# ================= BOX SETUP =================
 box_width = 28
-space = 3
-total = box_width * 2 + space + 1
-top = "▒" * (total + 2)
+total = box_width*2 + 3 + 1
+top = "▒" * (total+2)
 
-# ---------- HELP FUNCTION ----------
 def tri_line(total):
-    return "▒" + "─" * total + "▒"
+    return "▒" + "─"*total + "▒"
 
-# ---------- DISPLAY ALL SECTIONS WITH ITEMS (FIRST TIME) ----------
+# ================= DISPLAY ALL SECTIONS (FIRST TIME) =================
 def display_all_sections():
     os.system("clear")
     type_print(logo_main, delay=0.002)
     print()
     for idx, (name, items) in enumerate(sections.items()):
-        color = initial_colors[idx % len(initial_colors)]
-        # سیکشن عنوان
-        type_print(f"▒{color}{name.center(total)}{RS}▒", delay=0.01)
+        type_print(tri(f"▒{name.center(total)}▒"), delay=0.01)
         print(tri_line(total))
-        # دوه ستنه ایټمونه
         for i in range(8):
-            left = f"{R}{items[i].ljust(box_width)}{RS}"
-            right = f"{G}{items[i+8].ljust(box_width)}{RS}"
+            left = items[i].ljust(box_width)
+            right = items[i+8].ljust(box_width)
             line = f"▒{left}│{right}▒"
-            type_print(line, delay=0.004)
+            type_print(tri(line), delay=0.004)
         print(tri_line(total))
     print(top)
 
-# ---------- DISPLAY SELECTED SECTION (SECOND TIME) ----------
-def display_selected_section(name, items):
+# ================= DISPLAY ASCII MESSAGE BEFORE SECTION =================
+def display_ascii_message():
     os.system("clear")
+    for line in ascii_message.splitlines():
+        type_print(f"{C}{line.center(total)}{RS}", delay=0.01)
+    time.sleep(1.5)
+    os.system("clear")
+
+# ================= DISPLAY SELECTED SECTION =================
+def display_selected_section(name, items):
     type_print(logo_secondary, delay=0.002)
     print(tri_line(total))
-    # عنوان ساده رنګ
     type_print(f"▒{B}{name.center(total)}{RS}▒", delay=0.01)
     print(tri_line(total))
-    # دوه ستنه ایټمونه ساده رنګونه
     for i in range(8):
         left = f"{M}{items[i].ljust(box_width)}{RS}"
         right = f"{C}{items[i+8].ljust(box_width)}{RS}"
@@ -204,12 +221,13 @@ def display_selected_section(name, items):
     print(tri_line(total))
     print(top)
 
-# ---------- MAIN ----------
+# ================= MAIN =================
 display_all_sections()
 choice = input("\n[?] Select a section: ").strip().lower()
 
 for name in sections.keys():
     if name.lower().startswith(choice):
+        display_ascii_message()  # ASCII art مخکې له سیکشن
         display_selected_section(name, sections[name])
         type_print(f"[✓] You selected: {name}", delay=0.01)
         break
