@@ -95,24 +95,13 @@ import os, sys, time
 R  = "\033[1;31m"   # Red
 Y  = "\033[1;33m"   # Yellow
 G  = "\033[1;32m"   # Green
+B  = "\033[1;34m"   # Blue
+M  = "\033[1;35m"   # Magenta
+C  = "\033[1;36m"   # Cyan
 RS = "\033[0m"      # Reset
 
-# ---------- GRADIENT ----------
-def tri(text):
-    out = ""
-    L = len(text)
-    for i, ch in enumerate(text):
-        p = i / max(L-1, 1)
-        if p < 0.33:
-            out += R + ch
-        elif p < 0.66:
-            out += Y + ch
-        else:
-            out += G + ch
-    return out + RS
-
 # ---------- TYPING EFFECT ----------
-def type_print(text, delay=0.006):
+def type_print(text, delay=0.008):
     for ch in text:
         sys.stdout.write(ch)
         sys.stdout.flush()
@@ -138,7 +127,7 @@ logo_secondary = """
  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
 """
 
-# ---------- SECTIONS WITH ITEMS ----------
+# ---------- SECTIONS AND ITEMS ----------
 sections = {
     "Social Media": [
         "Facebook","WhatsApp","TikTok","YouTube",
@@ -166,49 +155,74 @@ sections = {
     ]
 }
 
+section_colors = {
+    "Social Media": R,
+    "Camera Tools": Y,
+    "Utilities": G,
+    "Network Tools": C
+}
+
 # ---------- BOX SETUP ----------
 box_width = 28
 space = 3
 total = box_width * 2 + space + 1
 top = "▒" * (total + 2)
 
-# ---------- FUNCTION TO DISPLAY A SECTION ----------
-def display_section(title, items, logo=logo_main):
+# ---------- HELP FUNCTION ----------
+def tri_line(total):
+    return "▒" + "─" * total + "▒"
+
+# ---------- DISPLAY SECTION WITH ITEMS ----------
+def display_section(name, items, logo=logo_main):
     os.system("clear")
-    print(tri(logo))
-    print(tri(f"▒{title.center(total)}▒"))
-    print(tri("▒" + "─" * total + "▒"))
+    type_print(logo, delay=0.002)
+    color = section_colors.get(name, M)
     
-    # دوه ستنه چاپول
+    type_print(f"▒{color}{name.center(total)}{RS}▒", delay=0.01)
+    print(tri_line(total))
+    
     for i in range(8):
-        left = items[i].ljust(box_width)
-        right = items[i+8].ljust(box_width)
+        left = f"{M}{items[i].ljust(box_width)}{RS}"
+        right = f"{C}{items[i+8].ljust(box_width)}{RS}"
         line = f"▒{left}│{right}▒"
-        type_print(tri(line), delay=0.004)
-    
-    print(tri("▒" + "─" * total + "▒"))
-    print(tri(top))
+        type_print(line, delay=0.004)
+    print(tri_line(total))
+    print(top)
 
-# ---------- MAIN ----------
+# ---------- MAIN MENU ----------
+def main_menu():
+    while True:
+        os.system("clear")
+        type_print(logo_main, delay=0.002)
+        print(tri_line(total))
+        # ښودل د ټول سیکشنونو ایټمونه
+        for name, items in sections.items():
+            color = section_colors.get(name, R)
+            type_print(f"▒{color}{name.center(total)}{RS}▒", delay=0.01)
+            for i in range(8):
+                left = f"{M}{items[i].ljust(box_width)}{RS}"
+                right = f"{C}{items[i+8].ljust(box_width)}{RS}"
+                line = f"▒{left}│{right}▒"
+                type_print(line, delay=0.004)
+            print(tri_line(total))
+        print(top)
+        
+        choice = input(tri("\n[?] Select a section (or 'exit' to quit): ")).strip().lower()
+        if choice == "exit":
+            break
+        
+        # پیدا کول او نمایش کول
+        for name in sections.keys():
+            if name.lower().startswith(choice):
+                display_section(name, sections[name], logo_secondary)
+                input(tri("\nPress Enter to go back to main menu..."))
+                break
+        else:
+            type_print(tri("[✗] Invalid selection!"))
+            time.sleep(1)
 
-os.system("clear")
-print(tri(logo_main))
-
-# په شروع کې ټول سیکشنونه د مینیو ایټمونو سره ښودل
-for sec_name, items in sections.items():
-    display_section(sec_name, items)
-
-# د کارونکي انتخاب
-choice = input(tri("\n[?] Select a section: ")).strip().lower()
-
-# انتخاب شوی سیکشن د لوگو ثانوي ډیزاین سره ښودل
-for sec_name, items in sections.items():
-    if sec_name.lower().startswith(choice):
-        display_section(sec_name, items, logo=logo_secondary)
-        type_print(tri(f"[✓] You selected: {sec_name}"), delay=0.01)
-        break
-else:
-    type_print(tri("[✗] Invalid selection!")) 
+# ---------- RUN ----------
+main_menu() 
 print("\033[1;31m     ┏━━━━━━━━━━━━━━━━━━━\033[1;32m BCS \033[1;31m━━━━━━━━━━━━━━━━━━━━━┓") 
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙉𝘼𝙈𝙀         \033[1;31m: \033[1;33m[★] JABER\033[1;31m                ┃")
 print("\033[1;31m     ┃ \033[1;35m❣︎☔︎ \033[1;36m𝙏𝙊𝙊𝙇 𝙉𝘼𝙈𝙀   \033[1;31m: \033[1;33m[★] R4NDOM-CLONING\033[1;31m       ┃")
