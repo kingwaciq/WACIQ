@@ -291,9 +291,6 @@ def display_ascii_message():
 
     os.system("clear") 
 # ================= SELECTED SECTION =================
-os.system(f"xdg-open '{link}'")
-time.sleep(1)
-
 def display_selected_section(name, data):
     items = data["items"]
     link = data["link"]
