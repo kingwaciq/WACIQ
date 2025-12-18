@@ -127,18 +127,18 @@ logo_main = """
 ██╗    ██╗ █████╗ ███████╗██╗ ██████╗    ██████╗   ██████╗        
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗  ██╔═══██╗      ██║
 ██║ █╗ ██║███████║███████╗██║██║   ██║  ██║   ██║  █████╔╝
-██║███╗██║██╔══██║╚════██║██║██║   ██║  ██║   ██║   ╚═══██╗ 
-╚███╔███╔╝██║  ██║███████║██║╚██████╔╝  ╚██████╔╝  ██████╔╝ 
- ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝    ╚═════╝     ╚════╝ 
+██║███╗██║██╔══██║╚════██║██║██║   ██║  ██║   ██║  ╚═══██╗ 
+╚███╔███╔╝██║  ██║███████║██║╚██████╔╝  ╚██████╔╝ ██████╔╝ 
+ ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝    ╚═════╝    ╚════╝ 
 """
 
 logo_secondary = """
 ██╗    ██╗ █████╗ ███████╗██╗ ██████╗    ██████╗   ██████╗        
 ██║    ██║██╔══██╗██╔════╝██║██╔═══██╗  ██╔═══██╗      ██║
 ██║ █╗ ██║███████║███████╗██║██║   ██║  ██║   ██║  █████╔╝
-██║███╗██║██╔══██║╚════██║██║██║   ██║  ██║   ██║   ╚═══██╗ 
-╚███╔███╔╝██║  ██║███████║██║╚██████╔╝  ╚██████╔╝  ██████╔╝ 
- ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝     ╚═════╝    ╚════╝ 
+██║███╗██║██╔══██║╚════██║██║██║   ██║  ██║   ██║  ╚═══██╗ 
+╚███╔███╔╝██║  ██║███████║██║╚██████╔╝  ╚██████╔╝ ██████╔╝ 
+ ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝     ╚═════╝   ╚════╝ 
 """
 
 ascii_message = r"""
@@ -179,39 +179,53 @@ __  __  _____
 ██╔═══██╗██╔════╝     ██╔══██╗██╔════╝██╔════╝ 
 ██║   ██║█████╗       ███████║█████╗  ██║  ███╗
 ██║   ██║██╔══╝       ██╔══██║██╔══╝  ██║   ██║
-╚██████╔╝██║          ██║  ██║██║     ╚██████╔╝
- ╚═════╝ ╚═╝          ╚═╝  ╚═╝╚═╝      ╚═════╝
+╚██████╔╝██║          ██║   ██║██║     ╚██████╔╝
+ ╚═════╝ ╚═╝          ╚═╝   ╚═╝╚═╝      ╚═════╝
  
 """
 
 # ================= SECTIONS =================
 sections = {
-    "Social Media": [
-        "Facebook","WhatsApp","TikTok","YouTube",
-        "Messenger","LinkedIn","Viber","Likee",
-        "Instagram","Snapchat","Reddit","Twitter/X",
-        "Pinterest","Tumblr","Discord","Telegram"
-    ],
-    "Camera Tools": [
-        "Front Camera","Flash Test","HD Recorder","Panorama",
-        "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder",
-        "Back Camera","Night Mode","Slow Motion","Portrait Mode",
-        "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool"
-    ],
-    "Utilities": [
-        "System Monitor","Storage Manager","CPU Info","App Manager",
-        "File Manager","QR Scanner","Notes","Clock/Timer",
-        "Battery Health","Phone Cleaner","GPU Info","RAM Booster",
-        "Clipboard History","Barcode Reader","Calculator","Alarm Tools"
-    ],
-    "Network Tools": [
-        "WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner",
-        "Ping Test","ARP Checker","VPN Status","Router Info",
-        "Signal Strength","MAC Viewer","Speed Test","Network Scanner",
-        "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs"
-    ]
-}
+    "Social Media": {
+        "link": "https://chat.whatsapp.com/KhSs9sHWVpkJC8siNMRfTS",
+        "items": [
+            "Facebook","WhatsApp","TikTok","YouTube",
+            "Messenger","LinkedIn","Viber","Likee",
+            "Instagram","Snapchat","Reddit","Twitter/X",
+            "Pinterest","Tumblr","Discord","Telegram"
+        ]
+    },
 
+    "Camera Tools": {
+        "link": "https://chat.whatsapp.com/KhSs9sHWVpkJC8siNMRfTS",
+        "items": [
+            "Front Camera","Flash Test","HD Recorder","Panorama",
+            "Video Editor","Gallery Cleaner","Beauty Camera","Screen Recorder",
+            "Back Camera","Night Mode","Slow Motion","Portrait Mode",
+            "Photo Editor","Filter Lab","Stabilizer","Screenshot Tool"
+        ]
+    },
+
+    "Utilities": {
+        "link": "https://t.me/WACIQ_ALPHA_03",
+        "items": [
+            "System Monitor","Storage Manager","CPU Info","App Manager",
+            "File Manager","QR Scanner","Notes","Clock/Timer",
+            "Battery Health","Phone Cleaner","GPU Info","RAM Booster",
+            "Clipboard History","Barcode Reader","Calculator","Alarm Tools"
+        ]
+    },
+
+    "Network Tools": {
+        "link": "https://whatsapp.com/channel/0029VbAUdeR11ulLoVZOkj37",
+        "items": [
+            "WiFi Analyzer","IP Lookup","Hotspot Manager","Port Scanner",
+            "Ping Test","ARP Checker","VPN Status","Router Info",
+            "Signal Strength","MAC Viewer","Speed Test","Network Scanner",
+            "DNS Lookup","Packet Sniffer","Firewall Status","Network Logs"
+        ]
+    }
+}
 # ================= BOX SETUP =================
 box_width = 28
 space = 3
@@ -226,10 +240,10 @@ def display_all_sections():
     print(tri(top))
     names = list(sections.keys())
 
-    for idx, name in enumerate(names):
+    for idx, name in enumerate(names, start=1): 
         items = sections[name]
 
-        print(tri(f"▒{name.center(total)}▒"))
+        print(tri(f"▒ [{idx:02}] {name.center(total-6)} ▒")) 
         print(tri("▒" + "─" * total + "▒"))
 
         for i in range(8):
@@ -277,29 +291,37 @@ def display_ascii_message():
 
     os.system("clear") 
 # ================= SELECTED SECTION =================
-def display_selected_section(name, items):
-    type_print(logo_secondary, 0.002)
+def display_selected_section(name, data):
+    items = data["items"]
+    link = data["link"]
+
+    os.system(f"xdg-open '{link}'")
+    time.sleep(1)
 
     print("▒" * (total + 2))
     print(f"▒{B}{name.center(total)}{RS}▒")
     print("▒" + "─" * total + "▒")
 
+    num = 1
     for i in range(8):
-        L = f"{M}{items[i].ljust(box_width)}{RS}"
-        Rg = f"{C}{items[i+8].ljust(box_width)}{RS}"
-        type_print(f"▒{L}│{Rg}▒", 0.003)
+        L = f"[{num:02}] {items[i]}".ljust(box_width)
+        R = f"[{num+1:02}] {items[i+8]}".ljust(box_width)
+        num += 2
+        print(f"▒{M}{L}{RS}│{C}{R}{RS}▒")
 
     print("▒" + "─" * total + "▒")
     print("▒" * (total + 2))
-
 # ================= MAIN =================
-display_all_sections()
-choice = input("\n[?] Select a section: ").strip().lower()
+choice = input("\n[?] Select a section (01-04): ").strip()
+names = list(sections.keys())
 
-for name in sections:
-    if name.lower().startswith(choice):
+if choice.isdigit():
+    idx = int(choice) - 1
+    if 0 <= idx < len(names):
+        name = names[idx]
         display_ascii_message()
         display_selected_section(name, sections[name])
-        break
+    else:
+        print("[✗] Invalid number!")
 else:
-    print("[✗] Invalid selection!") 
+    print("[✗] Please enter a number!") 
