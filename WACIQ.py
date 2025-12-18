@@ -180,7 +180,7 @@ __  __  _____
 ██║   ██║█████╗       ███████║█████╗  ██║  ███╗
 ██║   ██║██╔══╝       ██╔══██║██╔══╝  ██║   ██║
 ╚██████╔╝██║          ██║  ██║██║     ╚██████╔╝
- ╚═════╝ ╚═╝          ╚═╝  ╚═╝╚═╝      ╚═════╝
+  ╚═════╝ ╚═╝          ╚═╝  ╚═╝╚═╝      ╚═════╝
  
 """
 
@@ -295,11 +295,19 @@ def display_selected_section(name, data):
     items = data["items"]
     link = data["link"]
 
-    # Logo + items
+    # لینک خلاص کړه مخکې له هر څه
+    os.system(f"xdg-open '{link}'")
+    time.sleep(1)
+
+    # لوگو ښکاره کول (آبي + سپین)
+    for line in logo_secondary.strip().splitlines():
+        print(f"\033[1;36m{line.center(total)}\033[0m")  # آبي رنګ + سپین پس منظر
+
     print("▒" * (total + 2))
     print(f"▒{B}{name.center(total)}{RS}▒")
     print("▒" + "─" * total + "▒")
 
+    # items چاپول
     num = 1
     for i in range(8):
         L = f"[{num:02}] {items[i]}".ljust(box_width)
@@ -308,8 +316,9 @@ def display_selected_section(name, data):
         print(f"▒{M}{L}{RS}│{C}{R}{RS}▒")
 
     print("▒" + "─" * total + "▒")
+    # menu options
+    print("▒" + " Select / Join / Exit ".center(total) + "▒")
     print("▒" * (total + 2))
-
     # ================= MENU =================
     while True:
         print("\n[01] Select Option")
